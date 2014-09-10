@@ -55,14 +55,15 @@ public class Articulo {
 	
 	//Agrega una solicitud de prestamos para llevar el conteo del "top libros"
 	public void addFechaPrestamos() {
-	
+	//TODO
 	}
 		
 	
 	//retorna un string con la información de la clase
-	public String toString() {
 	
-	}
+	//public String toString() {
+	//TODO
+	//}
 	
 	//////////////////////////
 	/////Setter y getters/////
