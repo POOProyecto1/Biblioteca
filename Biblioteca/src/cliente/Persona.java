@@ -146,8 +146,8 @@ public class Persona {
 		}
 	}
 	
-	/*public boolean verificarMorosidad() {
-	//TODO
+	public boolean verificarMorosidad() {
+	 //TODO
 	}
 	
 	public ArrayList verArticulosVencidos() {

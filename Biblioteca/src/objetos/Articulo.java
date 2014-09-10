@@ -14,7 +14,7 @@ public class Articulo {
 	private boolean prestado;
 	private ArrayList<Articulo>fechaPrestamos;
 	
-	//Constructores
+	//Constructores de la clase
 	
 	//Constructor para artículos nuevos
 	public Articulo(String titulo,String imagen,float calificacion,int annio,String codigo,Persona prestatario
