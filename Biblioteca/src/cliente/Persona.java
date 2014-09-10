@@ -1,14 +1,13 @@
 package cliente;
 
 import java.util.ArrayList;
-
 import objetos.Articulo;	//Se importa la clase Articulo, ya que una persona puede tener o no artículos en préstamo
 
 
 public class Persona {
 	private int edad;
 	private String direccion;
-	private ArrayList<Articulo>prestamos;
+	ArrayList<Articulo> prestamos;  //guarda el código de los articulos perstados
 	private String nombre;
 	private String primerApellido;
 	private String segundoApellido;
@@ -19,9 +18,16 @@ public class Persona {
 	//Constructor de la clase
 	public Persona(String nombre,String primerApellido,String segundoApellido,
 			String edad,String direccion,String telefono,String correo) {
+		//Asignación de valores a los atributos
 		setEdad(edad);
-		
-		
+		setDireccion(direccion);
+		prestamos=new ArrayList<Articulo>();
+		setNombre(nombre);
+		setPrimerApellido(primerApellido);
+		setSegundoApellido(segundoApellido);
+		setTelefono(telefono);
+		setCorreo(correo);
+		setMorosidad(false);
 	}
 	
 
