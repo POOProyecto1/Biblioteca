@@ -1,24 +1,24 @@
 package cliente;
 
 import java.util.ArrayList;
-import objetos.Articulo;	//Se importa la clase Articulo, ya que una persona puede tener o no art韈ulos en pr閟tamo
+import objetos.Articulo;	//Se importa la clase Articulo, ya que una persona puede tener o no art铆culos en pr茅stamo
 
 
-public class Persona {
-	private int edad;
-	private String direccion;
-	ArrayList<Articulo> prestamos;  //guarda el c骴igo de los articulos perstados
-	private String nombre;
-	private String primerApellido;
-	private String segundoApellido;
-	private String telefono;
-	private String correo;
-	private boolean morosidad;
+public class Persona { // Los atributos est谩n en protected para que puedan ser accedidos por las clases hijas
+	protected int edad;
+	protected String direccion;
+	ArrayList<Articulo> prestamos;  //guarda el c贸digo de los articulos prestados
+	protected String nombre;
+	protected String primerApellido;
+	protected String segundoApellido;
+	protected String telefono;
+	protected String correo;
+	protected boolean morosidad;
 	
 	//Constructor de la clase
 	public Persona(String nombre,String primerApellido,String segundoApellido,
 			String edad,String direccion,String telefono,String correo) {
-		//Asignaci髇 de valores a los atributos
+		//Asignaci贸n de valores a los atributos
 		setEdad(edad);
 		setDireccion(direccion);
 		prestamos=new ArrayList<Articulo>();
@@ -60,7 +60,7 @@ public class Persona {
 		return prestamos;
 	}
 
-	//Agrega un nuevo art韈ulo a los que tiene el usuario actualmente en pr閟tamo.
+	//Agrega un nuevo art铆culo a los que tiene el usuario actualmente en pr茅stamo.
 	public void setPrestamos(Articulo prestamo) {
 		prestamos.add(prestamo);			
 	}
@@ -138,10 +138,10 @@ public class Persona {
 			if (temp[1].contains(".")){
 				return true;
 			}
-			else{
+			else {
 				return false;
 			}
-		}else{
+		} else {
 			return false;	
 		}
 	}
@@ -154,7 +154,15 @@ public class Persona {
 	//TODO
 	}
 	
-	public String toString() {
-	//TODO
-	}*/
+	public String toString() { // Impresi贸n de toda la informaci贸n personal del prestatario
+		String msg = "";
+		
+		msg = "Nombre Completo: " + getNombre() + getPrimerApellido() + getSegundoApellido() + "\n";
+		msg += "Edad: " + getEdad() + "\n";
+		msg += "Direcci贸n exacta: " + getDireccion() + "\n";
+		msg += "Tel茅fono: " + getTelefono() + "\n";
+		msg += "Email de contacto: " + getCorreo() + "\n";
+		msg += "驴Moroso? :" + isMorosidad() + "\n";
+		return msg;
+	}
 }
