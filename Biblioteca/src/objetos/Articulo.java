@@ -1,25 +1,23 @@
 package objetos;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import cliente.Persona;
 
 public class Articulo {
-	private String titulo;
-	private String imagen;
-	private float calificacion;
-	private int annio;
-	private String codigo;
-	private Persona prestatario; 
-	private int diasPrestado;
-	private boolean prestado;
-	private ArrayList<Articulo>fechaPrestamos;
+	protected String titulo;
+	protected String imagen;
+	protected float calificacion;
+	protected int annio;
+	protected String codigo;
+	protected Persona prestatario; 
+	protected int diasPrestado;
+	protected boolean prestado;
+	protected ArrayList<Articulo>fechaPrestamos;
 	
 	//Constructores de la clase
 	
-	//Constructor para artículos nuevos
-	public Articulo(String titulo,String imagen,float calificacion,int annio,String codigo,Persona prestatario
-			) {
-	
+	//Constructor para artÃ­culos nuevos
+	public Articulo(String titulo, String imagen, float calificacion, int annio, String codigo, Persona prestatario) {
 		setTitulo(titulo);
 		setImagen(imagen);
 		setCalificacion(calificacion);
@@ -30,7 +28,7 @@ public class Articulo {
 		setPrestado(false);	
 	}
 	
-	//Constructor para cargar artículos existentes
+	//Constructor para cargar artÃ­culos existentes
 	public Articulo(String titulo,String imagen,float calificacion,int annio,String codigo,Persona prestatario
 			,int diasPrestado,boolean prestado,ArrayList<Articulo> fechaPrestamos) {
 	
@@ -59,7 +57,7 @@ public class Articulo {
 	}
 		
 	
-	//retorna un string con la información de la clase
+	//retorna un string con la informaciÃ³n de la clase
 	
 	//public String toString() {
 	//TODO
