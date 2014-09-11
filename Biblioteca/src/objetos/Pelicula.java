@@ -1,12 +1,13 @@
 package objetos;
+
 import java.util.ArrayList;
 import cliente.Persona;	//Se importa la clase Persona, ya que una pelicula puede o no estar prestado a una Persona
 
 public class Pelicula extends Articulo {
-	protected String compania;
+	private String compania;
 	
-	public Pelicula(String titulo, String imagen, int annio, String compania) {
-		super(titulo, imagen, annio);
+	public Pelicula(String titulo, String imagen, int annio, float calificacion, String codigo, String compania, Persona prestatario) {
+		super(titulo, imagen, calificacion, annio, codigo, prestatario);
 		setCompania(compania);
 	}
 
@@ -24,12 +25,12 @@ public class Pelicula extends Articulo {
 	
 	public String toString() {
 		String respuesta;
-		respuesta=compania+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+codigo+"*"+prestatario+"*"+diasPrestado+"*";
-		int longitud=fechaPrestamos.length();
-		int contador=0;
-		while(contador!=longitud) {
-			respuesta+=","+fechaPrestamos[i];
-			contador+=1;
+		respuesta = compania+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+codigo+"*"+prestatario+"*"+diasPrestado+"*";
+		int longitud = ((CharSequence) fechaPrestamos).length();
+		int contador = 0;
+		while(contador != longitud) {
+			respuesta += "," + fechaPrestamos[i];
+			contador += 1;
 		}
 	}
 }
