@@ -1,13 +1,14 @@
 package objetos;
+
 import java.util.ArrayList;
 import cliente.Persona;	//Se importa la clase Persona, ya que una revista puede o no estar prestado a una Persona
 
 public class Revista extends Articulo {
-	protected String edicion;
-	protected String editorial;
+	private String edicion;
+	private String editorial;
 	
-	public Revista(String titulo, String imagen, int annio, String edicion, String editorial) {
-		super(titulo, imagen, annio);
+	public Revista(String titulo, String imagen, int annio, float calificacion, String codigo, String edicion, String editorial, Persona prestatario) {
+		super(titulo, imagen, calificacion, annio, codigo, prestatario);
 		setEdicion(edicion);
 		setEditorial(editorial);
 	}
@@ -33,12 +34,12 @@ public class Revista extends Articulo {
 	
 	public String toString() {
 		String respuesta;
-		respuesta=edicion+"*"+editorial+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+codigo+"*"+prestatario+"*"+diasPrestado+"*";
-		int longitud=fechaPrestamos.length();
-		int contador=0;
-		while(contador!=longitud) {
-			respuesta+=","+fechaPrestamos[i];
-			contador+=1;
+		respuesta = edicion+"*"+editorial+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+codigo+"*"+prestatario+"*"+diasPrestado+"*";
+		int longitud = ((CharSequence) fechaPrestamos).length();
+		int contador = 0;
+		while(contador != longitud) {
+			respuesta += "," + fechaPrestamos[i];
+			contador += 1;
 		}
 	}
 }
