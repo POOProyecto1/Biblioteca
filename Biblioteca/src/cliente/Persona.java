@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import objetos.Articulo;	//Se importa la clase Articulo, ya que una persona puede tener o no artículos en préstamo
 
 
-public class Persona { // Los atributos están en protected para que puedan ser accedidos por las clases hijas
+public class Persona { // Los atributos est�n en protected para que puedan ser accedidos por las clases hijas o clases en el mismo paquete
 	protected int edad;
 	protected String direccion;
-	ArrayList<Articulo> prestamos;  //guarda el código de los articulos prestados
+	protected ArrayList<Articulo> prestamos;  //guarda el c�digo de los articulos prestados
 	protected String nombre;
 	protected String primerApellido;
 	protected String segundoApellido;
@@ -122,11 +122,6 @@ public class Persona { // Los atributos están en protected para que puedan ser 
 	}
 
 
-	public boolean isMorosidad() {
-		return morosidad;
-	}
-
-
 	public void setMorosidad(boolean morosidad) {
 		this.morosidad = morosidad;
 	}
@@ -147,22 +142,27 @@ public class Persona { // Los atributos están en protected para que puedan ser 
 	}
 	
 	public boolean verificarMorosidad() {
-	 //TODO
+		for (int i=0;i<prestamos.size();i++) {
+			 if(prestamos.get(i).isVencido()){
+				 return true;
+			 }
+		}
+		return false;
 	}
 	
-	public ArrayList verArticulosVencidos() {
+	//public ArrayList<Articulo> verArticulosVencidos() {
 	//TODO
-	}
+	//}
 	
 	public String toString() { // Impresión de toda la información personal del prestatario
 		String msg = "";
 		
 		msg = "Nombre Completo: " + getNombre() + getPrimerApellido() + getSegundoApellido() + "\n";
 		msg += "Edad: " + getEdad() + "\n";
-		msg += "Dirección exacta: " + getDireccion() + "\n";
-		msg += "Teléfono: " + getTelefono() + "\n";
+		msg += "Direcci�n exacta: " + getDireccion() + "\n";
+		msg += "Tel�fono: " + getTelefono() + "\n";
 		msg += "Email de contacto: " + getCorreo() + "\n";
-		msg += "¿Moroso? :" + isMorosidad() + "\n";
+		msg += "Moroso :" + verificarMorosidad() + "\n";
 		return msg;
 	}
 }
