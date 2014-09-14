@@ -5,7 +5,7 @@ public class Familiar extends Persona {
 	
 	public Familiar(String nombre, String primerApellido,
 			String segundoApellido, String edad, String direccion,
-			String telefono, String correo,String carné,String parentesco) {
+			String telefono, String correo,String parentesco) {
 		super(nombre, primerApellido, segundoApellido, edad, direccion, telefono,
 				correo);
 		setParentesco(parentesco);
@@ -19,7 +19,9 @@ public class Familiar extends Persona {
 		this.parentesco = parentesco;
 	}
 
-	/*public String toString() {
-	//TODO
-	}*/
+	public String toString() {
+		String msg=super.toString();
+		msg+="Parentesco: "+getParentesco()+"\n";
+		return msg;
+	}
 }

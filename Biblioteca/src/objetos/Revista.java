@@ -1,7 +1,5 @@
 package objetos;
 
-import java.util.ArrayList;
-
 public class Revista extends Articulo {
 	private String edicion;
 	private String editorial;

@@ -41,13 +41,7 @@ public class Estudiante extends Persona {
 	}
 	
 	public String toString() { // Impresión de toda la información personal del prestatario
-		String msg = "";
-		msg = "Nombre Completo: " + getNombre() +" "+ getPrimerApellido() +" "+ getSegundoApellido() + "\n";
-		msg += "Edad: " + getEdad() + "\n";
-		msg += "Dirección exacta: " + getDireccion() + "\n";
-		msg += "Teléfono: " + getTelefono() + "\n";
-		msg += "Email de contacto: " + getCorreo() + "\n";
-		msg += "Moroso :" + verificarMorosidad() + "\n";
+		String msg = super.toString();
 		msg+="Carné: "+getCarné()+"\n";
 		msg+="Lugar de Estudio: "+getLugarEstudio()+"\n";
 		msg+="Carrera: "+getCarrera()+"\n";

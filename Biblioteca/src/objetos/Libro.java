@@ -1,6 +1,5 @@
 package objetos;
 
-import java.util.ArrayList;
 
 public class Libro extends Articulo {
 	private String edicion;

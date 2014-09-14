@@ -3,6 +3,7 @@ package cliente;
 public class Colega extends Persona {
 	private String puesto;
 	private String lugarTrabajo;
+	
 	public Colega(String nombre,String primerApellido,String segundoApellido,
 			String edad,String direccion,String telefono,String correo,String puesto,String lugarTrabajo) {
 		super( nombre, primerApellido, segundoApellido,
@@ -26,12 +27,11 @@ public class Colega extends Persona {
 	public void setLugarTrabajo(String lugarTrabajo) {
 		this.lugarTrabajo = lugarTrabajo;
 	}
-
-	/*public static void getString() {    //Es un método static, ya que a la hora de cargar personas desde un txt,no existe ninguna persona creada
-	//TODO
-	}
 	
 	public String toString() {
-	//TODO
-	}*/
+		String msg=super.toString();
+		msg+="Lugar de Trabajo: "+getLugarTrabajo()+"\n";
+		msg+="Puesto: "+getPuesto()+"\n";
+		return msg;
+	}
 }

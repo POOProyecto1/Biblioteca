@@ -1,6 +1,5 @@
 package objetos;
 
-import java.util.ArrayList;
 
 public class Pelicula extends Articulo {
 	private String compania;
