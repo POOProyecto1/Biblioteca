@@ -1,27 +1,30 @@
 package objetos;
 
 import java.util.ArrayList;
+
 import cliente.Persona;
 
 public class Articulo {
 	protected String titulo;
 	protected String imagen;
-	protected float calificacion;
-	protected int annio;		
+	protected double calificacion;
+	protected String annio;		
 	protected String codigo;       
 	protected Persona prestatario = null; //Persona que lo tiene en préstamo.
 	protected int diasPrestado; //Lleva la cuenta de los dias que lleva prestado a un cliente
 	protected boolean prestado; //Contiene el estado del artículo, true si alguna persona lo tiene,false si está disponible
-	protected ArrayList<int[]>fechaPrestamos; //contiene la frecuencia de prestamos por mes.(Cada casilla es un mes)
+	protected ArrayList<Integer>fechaPrestamos; //contiene la frecuencia de prestamos por mes.(Cada casilla es un mes)
 	protected static int diasD;  //valor estandar de días de prestamo
 	protected static int diasN;	//valor de dias de tolerancia
 	protected static int diasM;   //valor de dias extra de tolerancia
 	protected String estado; //Almacena el estado del libro en : verde, amarillo y rojo
+	protected static int casillaList;//contiene la posicion en la cual se está modificando el valor de frecuencia de prestamos dentro de fechaPrestamos 
+	
 	
 	//Constructores de la clase
 	
 	//Constructor para artÃ­culos nuevos
-	public Articulo(String titulo, String imagen, float calificacion, int annio, String codigo) {
+	public Articulo(String titulo, String imagen, double calificacion, String annio, String codigo) {
 		setTitulo(titulo);
 		setImagen(imagen);
 		setCalificacion(calificacion);
@@ -29,11 +32,12 @@ public class Articulo {
 		setCodigo(codigo);
 		setDiasPrestado(0);
 		setPrestado(false);	
+		fechaPrestamos=new ArrayList<Integer>();
 	}
 	
 	//Constructor para cargar artÃ­culos existentes
-	public Articulo(String titulo,String imagen,float calificacion,int annio,String codigo,
-			int diasPrestado,boolean prestado,ArrayList<int[]> fechaPrestamos) {
+	public Articulo(String titulo,String imagen,double calificacion,String annio,String codigo,
+			int diasPrestado,boolean prestado,ArrayList<Integer> fechaPrestamos) {
 	
 		setTitulo(titulo);
 		setImagen(imagen);
@@ -64,10 +68,16 @@ public class Articulo {
 			return false;
 		}
 	}
-	//Agrega una solicitud de prestamos para llevar el conteo del "top libros"
-	//public void addFechaPrestamos() {
-	//TODO
-	//}
+	
+	//adFechaPrestamos: Agrega una solicitud de prestamos para llevar el conteo del "top libros"
+	public void addFechaPrestamos(int dias) {
+		if (dias%30==0){
+			fechaPrestamos.add(0);
+			casillaList+=1;
+		}
+		int temp=fechaPrestamos.get(casillaList);
+		fechaPrestamos.set(casillaList, temp+1);
+	}
 		
 	
 	//retorna un string con la informaciÃ³n de la clase
@@ -95,19 +105,19 @@ public class Articulo {
 		this.imagen = imagen;
 	}
 
-	public float getCalificacion() {
+	public double getCalificacion() {
 		return calificacion;
 	}
 
-	public void setCalificacion(float calificacion) {
+	public void setCalificacion(double calificacion) {
 		this.calificacion = calificacion;
 	}
 
-	public int getAnnio() {
+	public String getAnnio() {
 		return annio;
 	}
 
-	public void setAnnio(int annio) {
+	public void setAnnio(String annio) {
 		this.annio = annio;
 	}
 
@@ -136,11 +146,11 @@ public class Articulo {
 	}
 
 	
-	public ArrayList<int[]> getFechaPrestamos() {
+	public ArrayList<Integer> getFechaPrestamos() {
 		return fechaPrestamos;
 	}
 
-	public void setFechaPrestamos(ArrayList<int[]> fechaPrestamos) {
+	public void setFechaPrestamos(ArrayList<Integer> fechaPrestamos) {
 		this.fechaPrestamos = fechaPrestamos;
 	}
 
@@ -183,5 +193,15 @@ public class Articulo {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public static int getCasillaList() {
+		return casillaList;
+	}
+
+	public static void setCasillaList(int casillaList) {
+		Articulo.casillaList = casillaList;
+	}
+
+	
 	
 }
