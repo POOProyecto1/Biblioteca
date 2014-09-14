@@ -27,7 +27,7 @@ public class Persona { // Los atributos están en protected para que puedan ser a
 		setSegundoApellido(segundoApellido);
 		setTelefono(telefono);
 		setCorreo(correo);
-		setMorosidad(false);
+		setMorosidad(false); 
 	}
 	
 
@@ -127,17 +127,32 @@ public class Persona { // Los atributos están en protected para que puedan ser a
 	}
 
 	
-	private boolean verificarCorreo(String correo){
-		if(correo.contains("@")){
-			String[] temp=correo.split("@");
-			if (temp[1].contains(".")){
-				return true;
+	public static boolean verificarCorreo(String correo){
+		if(correo.contains("@")){     //busca que el correo contenga un "@"
+			String[] temp=correo.split("@");	//separa el correo en dos partes mediante el "@"
+			if(temp[0].length()!=0){			//si esta condición se cumple significa que existe un nombre de usuario antes del "@"
+				if (temp[1].contains(".")){		//verifica que exista un "." al lado derecho del "@"
+					if (temp[1].startsWith(".")){ //si esta condición se cumple significa que no existe nada entre "@" y "."
+						return false;
+					}
+					else{						//si existe un dominio entre "@" y "." se verifica que exista una terminacion luego del "."					
+						String[] endMail = temp[1].split("."); 
+						if(endMail.length==2){
+							return true;
+						}else{
+							return false;
+						}
+					}
+				}
+				else {
+					return false;
+				}
+			}else {
+				return false;	
+				}
 			}
-			else {
-				return false;
-			}
-		} else {
-			return false;	
+		else{
+			return false;
 		}
 	}
 	
@@ -157,7 +172,7 @@ public class Persona { // Los atributos están en protected para que puedan ser a
 	public String toString() { // ImpresiÃ³n de toda la informaciÃ³n personal del prestatario
 		String msg = "";
 		
-		msg = "Nombre Completo: " + getNombre() + getPrimerApellido() + getSegundoApellido() + "\n";
+		msg = "Nombre Completo: " + getNombre() +" "+ getPrimerApellido() +" "+ getSegundoApellido() + "\n";
 		msg += "Edad: " + getEdad() + "\n";
 		msg += "Dirección exacta: " + getDireccion() + "\n";
 		msg += "Teléfono: " + getTelefono() + "\n";
