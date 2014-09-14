@@ -9,8 +9,8 @@ public class Estudiante extends Persona {
 	//Constructor de la clase
 	public Estudiante(String nombre,String primerApellido,String segundoApellido,
 						String edad,String direccion,String telefono,String correo,
-						String carné,String lugarEstudio,String carrera) {
-		super(nombre,primerApellido,segundoApellido,edad,direccion,telefono,correo);
+						String carné,String lugarEstudio,String carrera,String cedula) {
+		super(nombre,primerApellido,segundoApellido,edad,direccion,telefono,correo,cedula);
 		setCarné(carné);
 		setLugarEstudio(lugarEstudio);
 		setCarrera(carrera);

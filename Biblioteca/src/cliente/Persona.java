@@ -14,10 +14,11 @@ public class Persona { // Los atributos est·n en protected para que puedan ser a
 	protected String telefono;
 	protected String correo;
 	protected boolean morosidad;
+	protected String cedula;
 	
 	//Constructor de la clase
 	public Persona(String nombre,String primerApellido,String segundoApellido,
-			String edad,String direccion,String telefono,String correo) {
+			String edad,String direccion,String telefono,String correo,String cedula) {
 		//Asignaci√≥n de valores a los atributos
 		setEdad(edad);
 		setDireccion(direccion);
@@ -28,6 +29,7 @@ public class Persona { // Los atributos est·n en protected para que puedan ser a
 		setTelefono(telefono);
 		setCorreo(correo);
 		setMorosidad(false); 
+		setCedula(cedula);
 	}
 	
 
@@ -116,9 +118,16 @@ public class Persona { // Los atributos est·n en protected para que puedan ser a
 		}
 	}
 
-
 	public void setMorosidad(boolean morosidad) {
 		this.morosidad = morosidad;
+	}
+	
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 
 	//Funcion verificar correo: analiza el correo ingresado para evitar problemas a la hora de enviar notificaciones.
@@ -176,4 +185,7 @@ public class Persona { // Los atributos est·n en protected para que puedan ser a
 		msg += "Moroso :" + verificarMorosidad() + "\n";
 		return msg;
 	}
+
+
+
 }

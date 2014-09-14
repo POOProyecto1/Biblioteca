@@ -5,9 +5,9 @@ public class Colega extends Persona {
 	private String lugarTrabajo;
 	
 	public Colega(String nombre,String primerApellido,String segundoApellido,
-			String edad,String direccion,String telefono,String correo,String puesto,String lugarTrabajo) {
+			String edad,String direccion,String telefono,String correo,String puesto,String lugarTrabajo,String cedula) {
 		super( nombre, primerApellido, segundoApellido,
-			 edad, direccion, telefono, correo);
+			 edad, direccion, telefono, correo,cedula);
 		setPuesto(puesto);
 		setLugarTrabajo(lugarTrabajo);
 	}
