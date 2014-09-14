@@ -40,7 +40,17 @@ public class Estudiante extends Persona {
 		this.carrera = carrera;
 	}
 	
-	/*public String toString() {
-	//TODO
-	}*/
+	public String toString() { // Impresión de toda la información personal del prestatario
+		String msg = "";
+		msg = "Nombre Completo: " + getNombre() +" "+ getPrimerApellido() +" "+ getSegundoApellido() + "\n";
+		msg += "Edad: " + getEdad() + "\n";
+		msg += "Dirección exacta: " + getDireccion() + "\n";
+		msg += "Teléfono: " + getTelefono() + "\n";
+		msg += "Email de contacto: " + getCorreo() + "\n";
+		msg += "Moroso :" + verificarMorosidad() + "\n";
+		msg+="Carné: "+getCarné()+"\n";
+		msg+="Lugar de Estudio: "+getLugarEstudio()+"\n";
+		msg+="Carrera: "+getCarrera()+"\n";
+		return msg;
+	}
 }

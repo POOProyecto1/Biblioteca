@@ -5,7 +5,7 @@ import objetos.Articulo;	//Se importa la clase Articulo, ya que una persona pued
 
 
 public class Persona { // Los atributos están en protected para que puedan ser accedidos por las clases hijas o clases en el mismo paquete
-	protected int edad;
+	protected String edad;
 	protected String direccion;
 	protected ArrayList<Articulo> prestamos;  //guarda el código de los articulos prestados
 	protected String nombre;
@@ -32,18 +32,13 @@ public class Persona { // Los atributos están en protected para que puedan ser a
 	
 
 	//Set y get de todos los atributos
-	public int getEdad() {
+	public String getEdad() {
 		return edad;
 	}
 
 
-	public boolean setEdad(String edad) {
-		try {
-			this.edad =Integer.parseInt(edad);
-			return true;
-		} catch (java.lang.NumberFormatException e) {
-			return false;
-		}
+	public void setEdad(String edad) {
+		this.edad=edad;
 	}
 
 
@@ -126,8 +121,9 @@ public class Persona { // Los atributos están en protected para que puedan ser a
 		this.morosidad = morosidad;
 	}
 
-	
-	public static boolean verificarCorreo(String correo){
+	//Funcion verificar correo: analiza el correo ingresado para evitar problemas a la hora de enviar notificaciones.
+	//Se crea static, ya que es necesario 
+	public static boolean verificarCorreo(String correo){   
 		if(correo.contains("@")){     //busca que el correo contenga un "@"
 			String[] temp=correo.split("@");	//separa el correo en dos partes mediante el "@"
 			if(temp[0].length()!=0){			//si esta condición se cumple significa que existe un nombre de usuario antes del "@"
@@ -135,12 +131,12 @@ public class Persona { // Los atributos están en protected para que puedan ser a
 					if (temp[1].startsWith(".")){ //si esta condición se cumple significa que no existe nada entre "@" y "."
 						return false;
 					}
-					else{						//si existe un dominio entre "@" y "." se verifica que exista una terminacion luego del "."					
-						String[] endMail = temp[1].split("."); 
-						if(endMail.length==2){
-							return true;
-						}else{
+					else{						//si existe un dominio entre "@" y "."
+						if (temp[1].endsWith(".")){
 							return false;
+						}
+						else{
+							return true;
 						}
 					}
 				}
