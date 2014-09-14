@@ -12,7 +12,7 @@ public class Articulo {
 	protected Persona prestatario = null; //Persona que lo tiene en préstamo.
 	protected int diasPrestado; //Lleva la cuenta de los dias que lleva prestado a un cliente
 	protected boolean prestado; //Contiene el estado del artículo, true si alguna persona lo tiene,false si está disponible
-	protected ArrayList<Articulo>fechaPrestamos; //contiene la frecuencia de prestamos por mes.(Cada casilla es un mes)
+	protected ArrayList<int[]>fechaPrestamos; //contiene la frecuencia de prestamos por mes.(Cada casilla es un mes)
 	protected static int diasD;  //valor estandar de días de prestamo
 	protected static int diasN;	//valor de dias de tolerancia
 	protected static int diasM;   //valor de dias extra de tolerancia
@@ -33,7 +33,7 @@ public class Articulo {
 	
 	//Constructor para cargar artÃ­culos existentes
 	public Articulo(String titulo,String imagen,float calificacion,int annio,String codigo,
-			int diasPrestado,boolean prestado,ArrayList<Articulo> fechaPrestamos) {
+			int diasPrestado,boolean prestado,ArrayList<int[]> fechaPrestamos) {
 	
 		setTitulo(titulo);
 		setImagen(imagen);
@@ -136,11 +136,11 @@ public class Articulo {
 	}
 
 	
-	public ArrayList<Articulo> getFechaPrestamos() {
+	public ArrayList<int[]> getFechaPrestamos() {
 		return fechaPrestamos;
 	}
 
-	public void setFechaPrestamos(ArrayList<Articulo> fechaPrestamos) {
+	public void setFechaPrestamos(ArrayList<int[]> fechaPrestamos) {
 		this.fechaPrestamos = fechaPrestamos;
 	}
 
