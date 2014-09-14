@@ -1,10 +1,10 @@
-package objetos;
+ package objetos;
 
 public class Revista extends Articulo {
 	private String edicion;
 	private String editorial;
 	
-	public Revista(String titulo, String imagen, int annio, float calificacion, String codigo, String edicion, String editorial) {
+	public Revista(String titulo, String imagen, String annio, double calificacion, String codigo, String edicion, String editorial) {
 		super(titulo, imagen, calificacion, annio, codigo);
 		setEdicion(edicion);
 		setEditorial(editorial);
@@ -31,8 +31,8 @@ public class Revista extends Articulo {
 	
 	public String toString() {
 		String respuesta;
-		respuesta = edicion+"*"+editorial+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+codigo+"*"+prestatario+"*"+diasPrestado+"*";
-		int longitud = ((CharSequence) fechaPrestamos).length();
+		respuesta = edicion+"*"+editorial+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+codigo+"*"+prestatario+"*"+diasPrestado+"\n";
+		int longitud = fechaPrestamos.size();
 		int contador = 0;
 		while(contador != longitud) {
 			respuesta += "," + fechaPrestamos.get(contador);

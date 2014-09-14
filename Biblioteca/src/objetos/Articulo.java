@@ -33,6 +33,7 @@ public class Articulo {
 		setDiasPrestado(0);
 		setPrestado(false);	
 		fechaPrestamos=new ArrayList<Integer>();
+		fechaPrestamos.add(0);
 	}
 	
 	//Constructor para cargar artículos existentes
