@@ -7,8 +7,8 @@ public class Revista extends Articulo {
 	private String edicion;
 	private String editorial;
 	
-	public Revista(String titulo, String imagen, int annio, float calificacion, String codigo, String edicion, String editorial, Persona prestatario) {
-		super(titulo, imagen, calificacion, annio, codigo, prestatario);
+	public Revista(String titulo, String imagen, int annio, float calificacion, String codigo, String edicion, String editorial) {
+		super(titulo, imagen, calificacion, annio, codigo);
 		setEdicion(edicion);
 		setEditorial(editorial);
 	}
@@ -38,8 +38,9 @@ public class Revista extends Articulo {
 		int longitud = ((CharSequence) fechaPrestamos).length();
 		int contador = 0;
 		while(contador != longitud) {
-			respuesta += "," + fechaPrestamos[i];
+			respuesta += "," + fechaPrestamos.get(contador);
 			contador += 1;
 		}
+		return respuesta;
 	}
 }

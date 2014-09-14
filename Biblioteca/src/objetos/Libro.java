@@ -8,8 +8,8 @@ public class Libro extends Articulo {
 	private String editorial;
 	private String autor;
 	
-	public Libro(String titulo, String imagen, int annio, float calificacion, String codigo, String edicion, String editorial, String autor, Persona prestatario) {
-		super(titulo, imagen, calificacion, annio, codigo, prestatario);
+	public Libro(String titulo, String imagen, int annio, float calificacion, String codigo, String edicion, String editorial, String autor) {
+		super(titulo, imagen, calificacion, annio, codigo);
 		setEdicion(edicion);
 		setEditorial(editorial);
 		setAutor(autor);
@@ -47,8 +47,9 @@ public class Libro extends Articulo {
 		int longitud = ((CharSequence) fechaPrestamos).length();
 		int contador = 0;
 		while(contador != longitud) {
-			respuesta += "," + fechaPrestamos[i];
+			respuesta += "," + fechaPrestamos.get(contador);
 			contador += 1;
 		}
+		return respuesta;
 	}
 }

@@ -6,8 +6,8 @@ import cliente.Persona;	//Se importa la clase Persona, ya que una pelicula puede
 public class Pelicula extends Articulo {
 	private String compania;
 	
-	public Pelicula(String titulo, String imagen, int annio, float calificacion, String codigo, String compania, Persona prestatario) {
-		super(titulo, imagen, calificacion, annio, codigo, prestatario);
+	public Pelicula(String titulo, String imagen, int annio, float calificacion, String codigo, String compania) {
+		super(titulo, imagen, calificacion, annio, codigo);
 		setCompania(compania);
 	}
 
@@ -29,8 +29,9 @@ public class Pelicula extends Articulo {
 		int longitud = ((CharSequence) fechaPrestamos).length();
 		int contador = 0;
 		while(contador != longitud) {
-			respuesta += "," + fechaPrestamos[i];
+			respuesta += "," + fechaPrestamos.get(contador);
 			contador += 1;
 		}
+		return respuesta;
 	}
 }
