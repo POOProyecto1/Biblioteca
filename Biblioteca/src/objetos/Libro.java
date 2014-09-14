@@ -1,7 +1,6 @@
 package objetos;
 
 import java.util.ArrayList;
-import cliente.Persona;	//Se importa la clase Persona, ya que un libro puede o no estar prestado a una Persona
 
 public class Libro extends Articulo {
 	private String edicion;
