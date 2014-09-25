@@ -1,6 +1,7 @@
 package cliente;
 
 public class Colega extends Persona {
+	private static final long serialVersionUID = 1L;
 	private String puesto;
 	private String lugarTrabajo;
 	
