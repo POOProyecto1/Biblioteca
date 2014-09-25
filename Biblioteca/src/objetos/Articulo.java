@@ -9,7 +9,6 @@ public class Articulo {
 	protected String imagen;
 	protected double calificacion;
 	protected String annio;		
-	protected String codigo;       
 	protected Persona prestatario = null; //Persona que lo tiene en prÈstamo.
 	protected int diasPrestado; //Lleva la cuenta de los dias que lleva prestado a un cliente
 	protected boolean prestado; //Contiene el estado del artÌculo, true si alguna persona lo tiene,false si est· disponible
@@ -24,12 +23,11 @@ public class Articulo {
 	//Constructores de la clase
 	
 	//Constructor para art√≠culos nuevos
-	public Articulo(String titulo, String imagen, double calificacion, String annio, String codigo) {
+	public Articulo(String titulo, String imagen, double calificacion, String annio) {
 		setTitulo(titulo);
 		setImagen(imagen);
 		setCalificacion(calificacion);
 		setAnnio(annio);
-		setCodigo(codigo);
 		setDiasPrestado(0);
 		setPrestado(false);	
 		fechaPrestamos=new ArrayList<Integer>();
@@ -37,14 +35,13 @@ public class Articulo {
 	}
 	
 	//Constructor para cargar art√≠culos existentes
-	public Articulo(String titulo,String imagen,double calificacion,String annio,String codigo,
+	public Articulo(String titulo,String imagen,double calificacion,String annio,
 			int diasPrestado,boolean prestado,ArrayList<Integer> fechaPrestamos) {
 	
 		setTitulo(titulo);
 		setImagen(imagen);
 		setCalificacion(calificacion);
 		setAnnio(annio);
-		setCodigo(codigo);
 		setDiasPrestado(0);
 		setPrestado(false);	
 		setDiasPrestado(diasPrestado);
@@ -80,13 +77,6 @@ public class Articulo {
 		fechaPrestamos.set(casillaList, temp+1);
 	}
 		
-	
-	//retorna un string con la informaci√≥n de la clase
-	
-	//public String toString() {
-	//TODO
-	//}
-	
 	//////////////////////////
 	/////Setter y getters/////
 	//////////////////////////
@@ -122,13 +112,6 @@ public class Articulo {
 		this.annio = annio;
 	}
 
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
 
 	public Persona getPrestatario() {
 		return prestatario;

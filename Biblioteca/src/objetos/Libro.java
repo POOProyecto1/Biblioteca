@@ -6,8 +6,8 @@ public class Libro extends Articulo {
 	private String editorial;
 	private String autor;
 	
-	public Libro(String titulo, String imagen, String annio, double calificacion, String codigo, String edicion, String editorial, String autor) {
-		super(titulo, imagen, calificacion, annio, codigo);
+	public Libro(String titulo, String imagen, String annio, double calificacion,String edicion, String editorial, String autor) {
+		super(titulo, imagen, calificacion, annio);
 		setEdicion(edicion);
 		setEditorial(editorial);
 		setAutor(autor);
@@ -41,7 +41,7 @@ public class Libro extends Articulo {
 	
 	public String toString() {
 		String respuesta;
-		respuesta = edicion + "*" + editorial + "*" + autor +"*" + titulo + "*" + imagen + "*" + calificacion +"*" + annio + "*" + codigo + "*" + prestatario + "*" + diasPrestado +"\n";
+		respuesta = edicion + "*" + editorial + "*" + autor +"*" + titulo + "*" + imagen + "*" + calificacion +"*" + annio + "*"+ prestatario + "*" + diasPrestado +"\n";
 		int longitud = fechaPrestamos.size();
 		int contador = 0;
 		while(contador != longitud) {

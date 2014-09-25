@@ -4,8 +4,8 @@ package objetos;
 public class Pelicula extends Articulo {
 	private String compania;
 	
-	public Pelicula(String titulo, String imagen, String annio, double calificacion, String codigo, String compania) {
-		super(titulo, imagen, calificacion, annio, codigo);
+	public Pelicula(String titulo, String imagen, String annio, double calificacion, String compania) {
+		super(titulo, imagen, calificacion, annio);
 		setCompania(compania);
 	}
 
@@ -23,7 +23,7 @@ public class Pelicula extends Articulo {
 	
 	public String toString() {
 		String respuesta;
-		respuesta = compania+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+codigo+"*"+prestatario+"*"+diasPrestado+"\n";
+		respuesta = compania+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+prestatario+"*"+diasPrestado+"\n";
 		int longitud = fechaPrestamos.size();;
 		int contador = 0;
 		while(contador != longitud) {
