@@ -2,9 +2,12 @@ package cliente;
 
 import java.util.ArrayList;
 import objetos.Articulo;	//Se importa la clase Articulo, ya que una persona puede tener o no art√≠culos en pr√©stamo
+import java.io.Serializable;
 
 
-public class Persona { // Los atributos est·n en protected para que puedan ser accedidos por las clases hijas o clases en el mismo paquete
+public class Persona implements Serializable {    //se implementa Serializable, ya que es necesario a la hora de guardar una instancia en un txt
+	private static final long serialVersionUID = 1L;
+// Los atributos est·n en protected para que puedan ser accedidos por las clases hijas o clases en el mismo paquete
 	protected String edad;
 	protected String direccion;
 	protected ArrayList<Articulo> prestamos;  //guarda el cÛdigo de los articulos prestados
