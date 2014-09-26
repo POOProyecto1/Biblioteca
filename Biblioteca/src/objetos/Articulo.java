@@ -1,10 +1,12 @@
 package objetos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import cliente.Persona;
 
-public class Articulo {
+public class Articulo implements Serializable{
+	private static final long serialVersionUID = 1L;
 	protected String titulo;
 	protected String imagen;
 	protected double calificacion;
