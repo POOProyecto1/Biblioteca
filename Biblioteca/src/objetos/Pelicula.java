@@ -2,6 +2,7 @@ package objetos;
 
 
 public class Pelicula extends Articulo {
+	private static final long serialVersionUID = 1L;
 	private String compania;
 	
 	public Pelicula(String titulo, String imagen, String annio, double calificacion, String compania) {

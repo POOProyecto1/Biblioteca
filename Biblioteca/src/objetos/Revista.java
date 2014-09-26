@@ -1,6 +1,7 @@
  package objetos;
 
 public class Revista extends Articulo {
+	private static final long serialVersionUID = 1L;
 	private String edicion;
 	private String editorial;
 	
