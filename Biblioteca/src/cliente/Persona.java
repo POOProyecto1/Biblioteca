@@ -10,7 +10,7 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 // Los atributos están en protected para que puedan ser accedidos por las clases hijas o clases en el mismo paquete
 	protected String edad;
 	protected String direccion;
-	protected ArrayList<Articulo> prestamos;  //guarda el código de los articulos prestados
+	protected ArrayList<Articulo> prestamos;  
 	protected String nombre;
 	protected String primerApellido;
 	protected String segundoApellido;
