@@ -40,7 +40,6 @@ public class Registro {
 		int contador=0;
 		personas=getPersonas();
 		Persona cliente;
-		System.out.println(personas.size());
 		System.out.println("Enviando Notificaiones:");
 		for (int i = 0; i < personas.size(); i++) {
 			cliente=((Persona) personas.get(i));
