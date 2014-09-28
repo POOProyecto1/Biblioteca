@@ -78,7 +78,7 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(500,500);
 		setLocationRelativeTo(null);
-		setTitle("Virtualteca");
+		setTitle("Virtualiteca");
 		meterWidgets();
 		getContentPane().add(contenedor);
 		setVisible(true);
