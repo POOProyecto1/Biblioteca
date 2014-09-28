@@ -44,10 +44,8 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	JMenuItem mntmECliente = new JMenuItem("Cliente");
 	JMenuItem mntmEArticulo = new JMenuItem("Articulo");
 	String [] nColumnasC = {"Cliente", "Nombre","Primer Apellido","Segundo Apellido", "Teléfono","Correo"};
-	Object [][] infoTablaC = {};
-	Object [][] infoTablaA = {};
-	JTable tablaC = new JTable();
-	JTable tablaA = new JTable(infoTablaC, nColumnasC);
+	ArrayList<String> columnasC;
+	ArrayList<String> columnasA;
 	static int diasP = 0;
 	static int top = 10;
 	static int veces = 3;
@@ -55,6 +53,8 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	Registro registro = new Registro();
 	ArrayList<Object> personas = registro.getPersonas();
 	ArrayList<Object> articulos = registro.getArticulos();
+	JTable tablaC = new JTable();
+	JTable tablaA = new JTable();
 	
 	public Interfaz() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -70,9 +70,9 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	}
 
 	public void meterWidgets(){
-		//contenedor.setLayout(new FlowLayout());
+		contenedor.setLayout(new FlowLayout());
 		panelGrid.setLayout(new GridBagLayout());
-		contenedor.add(menuBar, BorderLayout.PAGE_START);
+		contenedor.add(menuBar);
 		menuBar.add(mnClientes);
 		menuBar.add(mnArticulos);
 		menuBar.add(mnPrestamos);
@@ -92,8 +92,8 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		mnClientes.add(mntmColegas);
 		mnClientes.add(mntmFamiliares);
 		
-		contenedor.add(panelScroll);
-		contenedor.add(tablaC, BorderLayout.CENTER);
+		//contenedor.add(panelScroll);
+		contenedor.add(tablaC);
 	}
 	
 	public static void main(String[] args) {
