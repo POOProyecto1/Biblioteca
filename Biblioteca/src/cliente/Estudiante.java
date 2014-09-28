@@ -3,7 +3,7 @@ package cliente;
 
 public class Estudiante extends Persona {
 	private static final long serialVersionUID = 1L;
-	private String carné;
+	private String carne;
 	private String lugarEstudio;
 	private String carrera;
 	private String tipo = "estudiante";
@@ -11,19 +11,19 @@ public class Estudiante extends Persona {
 	//Constructor de la clase
 	public Estudiante(String nombre,String primerApellido,String segundoApellido,
 						String edad,String telefono,String correo,
-						String carné,String lugarEstudio,String carrera) {
+						String carne,String lugarEstudio,String carrera) {
 		super(nombre,primerApellido,segundoApellido,edad,telefono,correo);
-		setCarné(carné);
+		setCarne(carne);
 		setLugarEstudio(lugarEstudio);
 		setCarrera(carrera);
 	}
 	
-	public String getCarné() {
-		return carné;
+	public String getCarne() {
+		return carne;
 	}
 
-	public void setCarné(String carné) {
-		this.carné = carné;
+	public void setCarne(String carne) {
+		this.carne = carne;
 	}
 
 	public String getLugarEstudio() {
@@ -48,7 +48,7 @@ public class Estudiante extends Persona {
 	
 	public String toString() { // Impresión de toda la información personal del prestatario
 		String msg = super.toString();
-		msg+="Carné: "+getCarné()+"\n";
+		msg+="Carn�: "+getCarne()+"\n";
 		msg+="Lugar de Estudio: "+getLugarEstudio()+"\n";
 		msg+="Carrera: "+getCarrera()+"\n";
 		return msg;
