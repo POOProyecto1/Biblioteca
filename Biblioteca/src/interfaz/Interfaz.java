@@ -60,13 +60,13 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	JMenuItem mntmEArticulo = new JMenuItem("Articulo");
 	ImageIcon logo = new ImageIcon("C://logo.jpg");
 	JLabel logoi = new JLabel(logo);
-	String [] nColumnasC = {"Nombre","Primer Apellido","Segundo Apellido", "Teléfono","Correo"};
+	String [] nColumnasC = {"Nombre","Primer Apellido","Segundo Apellido", "TelÃ©fono","Correo"};
 	String [] nColumnasL = {"Titulo", "Autor/Edicion/Annio","Editorial","Calificacion","Imagen"};
 	String [][] infoClientes = {};
 	String [][] infoArticulos = {};
-	static int diasP = 0;
-	static int top = 10;
-	static int veces = 3;
+	public static int diasP = 0;
+	public static int top = 10;
+	public static int veces = 3;
 	static int meses = 6;
 	ArrayList<Object> personas;
 	ArrayList<Object> articulos;
