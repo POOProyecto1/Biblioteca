@@ -3,27 +3,27 @@ package cliente;
 
 public class Estudiante extends Persona {
 	private static final long serialVersionUID = 1L;
-	private String carné;
+	private String carnÃ©;
 	private String lugarEstudio;
 	private String carrera;
 	private String tipo = "estudiante";
 	
 	//Constructor de la clase
 	public Estudiante(String nombre,String primerApellido,String segundoApellido,
-						String edad,String direccion,String telefono,String correo,
-						String carné,String lugarEstudio,String carrera,String cedula) {
-		super(nombre,primerApellido,segundoApellido,edad,direccion,telefono,correo,cedula);
-		setCarné(carné);
+						String edad,String telefono,String correo,
+						String carnÃ©,String lugarEstudio,String carrera) {
+		super(nombre,primerApellido,segundoApellido,edad,telefono,correo);
+		setCarnÃ©(carnÃ©);
 		setLugarEstudio(lugarEstudio);
 		setCarrera(carrera);
 	}
 	
-	public String getCarné() {
-		return carné;
+	public String getCarnÃ©() {
+		return carnÃ©;
 	}
 
-	public void setCarné(String carné) {
-		this.carné = carné;
+	public void setCarnÃ©(String carnÃ©) {
+		this.carnÃ© = carnÃ©;
 	}
 
 	public String getLugarEstudio() {
@@ -46,11 +46,12 @@ public class Estudiante extends Persona {
 		return tipo;
 	}
 	
-	public String toString() { // Impresión de toda la información personal del prestatario
+	public String toString() { // ImpresiÃ³n de toda la informaciÃ³n personal del prestatario
 		String msg = super.toString();
-		msg+="Carné: "+getCarné()+"\n";
+		msg+="CarnÃ©: "+getCarnÃ©()+"\n";
 		msg+="Lugar de Estudio: "+getLugarEstudio()+"\n";
 		msg+="Carrera: "+getCarrera()+"\n";
 		return msg;
 	}
 }
+
