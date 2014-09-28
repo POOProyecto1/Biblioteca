@@ -18,9 +18,9 @@ public class javamail {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.port", 587);
-        properties.put("mail.smtp.mail.sender", "micorreo@gmail.com");//Ingresar el correo emisor
-        properties.put("mail.smtp.password", "micontraseña"); //Ingresar contraseña de correo
-        properties.put("mail.smtp.user", "micorreo@gmail.com");//Ingresar el correo emisor
+        properties.put("mail.smtp.mail.sender", "virtualiteca@gmail.com");//Ingresar el correo emisor
+        properties.put("mail.smtp.password", "biblioVirtual"); //Ingresar contraseña de correo
+        properties.put("mail.smtp.user", "virtualiteca@gmail.com");//Ingresar el correo emisor
         properties.put("mail.smtp.auth", "true");
         session = Session.getDefaultInstance(properties);
     }
@@ -46,8 +46,7 @@ public class javamail {
     }
     
     public boolean enviarCorreo(String destinatario,String asunto,String mensaje){
-    	javamail mail = new javamail();
-    	boolean result = mail.send(destinatario,asunto,mensaje);
+    	boolean result = send(destinatario,asunto,mensaje);
     	return result;
     }
 }
