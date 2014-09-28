@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream; 
  
 public class Almacenamiento {
-	
 	public boolean guardar( ArrayList<Object> lista, String tipo){
 		FileOutputStream salida= null;
 		ObjectOutputStream objeto=null;
@@ -35,7 +34,6 @@ public class Almacenamiento {
 		}
 		return true;
 	};
-	
 	public ArrayList<Object> cargar(String tipo){
 		 ArrayList<Object>lista = new ArrayList<Object>();
 		 
@@ -60,11 +58,6 @@ public class Almacenamiento {
 			 }
 			 catch( Exception e2 ){}
 		 }
-		
 		return lista;
-		 
 	};
-	
 }
-	
-

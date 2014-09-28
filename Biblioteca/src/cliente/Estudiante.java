@@ -6,6 +6,7 @@ public class Estudiante extends Persona {
 	private String carné;
 	private String lugarEstudio;
 	private String carrera;
+	private String tipo = "estudiante";
 	
 	//Constructor de la clase
 	public Estudiante(String nombre,String primerApellido,String segundoApellido,
@@ -39,6 +40,10 @@ public class Estudiante extends Persona {
 
 	public void setCarrera(String carrera) {
 		this.carrera = carrera;
+	}
+	
+	public String getTipo(){
+		return tipo;
 	}
 	
 	public String toString() { // Impresión de toda la información personal del prestatario

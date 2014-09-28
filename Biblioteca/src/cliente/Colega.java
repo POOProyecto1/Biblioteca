@@ -4,6 +4,7 @@ public class Colega extends Persona {
 	private static final long serialVersionUID = 1L;
 	private String puesto;
 	private String lugarTrabajo;
+	private String tipo = "colega";
 	
 	public Colega(String nombre,String primerApellido,String segundoApellido,
 			String edad,String direccion,String telefono,String correo,String puesto,String lugarTrabajo,String cedula) {
@@ -27,6 +28,10 @@ public class Colega extends Persona {
 
 	public void setLugarTrabajo(String lugarTrabajo) {
 		this.lugarTrabajo = lugarTrabajo;
+	}
+	
+	public String getTipo(){
+		return tipo;
 	}
 	
 	public String toString() {

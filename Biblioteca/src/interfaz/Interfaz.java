@@ -5,24 +5,39 @@ import enviarMail.*;
 import objetos.*;
 import registro.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.Component;
 //import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Label;
+import java.io.File;
 //import java.awt.SystemColor;
 //import java.awt.Color;
 import java.util.ArrayList;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.event.MenuKeyListener;
+import javax.swing.event.MenuKeyEvent;
+import javax.swing.event.MenuListener;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Interfaz extends JFrame{ //implements ActionListener{
 	JPanel contenedor = new JPanel();
 	JPanel panelGrid = new JPanel();
-	JScrollPane panelScroll = new JScrollPane();
 	GridBagConstraints grid = new GridBagConstraints();
 	JMenuBar menuBar = new JMenuBar();
 	JMenu mnClientes = new JMenu("Clientes");
@@ -43,12 +58,11 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	JMenu mnEditar = new JMenu("Editar");
 	JMenuItem mntmECliente = new JMenuItem("Cliente");
 	JMenuItem mntmEArticulo = new JMenuItem("Articulo");
+	ImageIcon logo = new ImageIcon("C://logo.jpg");
+	JLabel logoi = new JLabel(logo);
 	String [] nColumnasC = {"Cliente", "Nombre","Primer Apellido","Segundo Apellido", "Teléfono","Correo"};
 	String [] nColumnasL = {"Titulo", "Autor","Editorial","Edicion","Imagen","Calificacion"};
-	String [][] infoClientes = {
-			{"test","test","test","test","test","test"},
-			{"test","test","test","test","test","test"}
-	};
+	String [][] infoClientes = {};
 	String [][] infoArticulos = {};
 	static int diasP = 0;
 	static int top = 10;
@@ -64,21 +78,15 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(500,500);
 		setLocationRelativeTo(null);
-		setTitle("Biblioteca");
-		
+		setTitle("Virtualteca");
 		meterWidgets();
-		
-		//add(contenedor);
-		
+		getContentPane().add(contenedor);
 		setVisible(true);
 	}
 
 	public void meterWidgets(){
-		contenedor.setLayout(new FlowLayout());
-		getContentPane().add(contenedor);
-		contenedor.add(menuBar);
-		contenedor.add(panelScroll, BorderLayout.CENTER);
-		panelGrid.setLayout(new GridBagLayout());
+		contenedor.setLayout(new BorderLayout());
+		contenedor.add(menuBar, BorderLayout.NORTH);
 		menuBar.add(mnClientes);
 		menuBar.add(mnArticulos);
 		menuBar.add(mnPrestamos);
@@ -97,13 +105,99 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		mnClientes.add(mntmEstudiantes);
 		mnClientes.add(mntmColegas);
 		mnClientes.add(mntmFamiliares);
+		contenedor.add(logoi, BorderLayout.CENTER);
+		panelGrid.setLayout(new GridBagLayout());
+		contenedor.add(logoi);
 		
-		//contenedor.add(panelScroll);
-		contenedor.add(tablaC);
+		mntmEstudiantes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoClientes = getListaC("estudiantes");
+				tablaC = new JTable();
+			}
+		});
+		mntmColegas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoClientes = getListaC("colegas");
+				
+			}
+		});
+		mntmFamiliares.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoClientes = getListaC("familiares");
+				
+			}
+		});
+		
+		mntmPeliculas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoArticulos = getListaA("peliculas");
+				
+			}
+		});
+		mntmRevistas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoArticulos = getListaA("revistas");
+				
+			}
+		});
+		mntmLibros.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoArticulos = getListaA("libros");
+				
+			}
+		});
+		
+		mntmRojo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoClientes = getListaC("rojo");
+				
+			}
+		});
+		mntmVerde.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoClientes = getListaC("verde");
+				
+			}
+		});
+		mntmAmarillo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				infoClientes = getListaC("amarillo");
+				
+			}
+		});
+		
+		
 	}
 	
-	public static void main(String[] args) {
-		new Interfaz();}
+	public String[][] getListaA(String tipo){
+		String [][] lista = {};
+		
+		return lista;
+	}
+	
+	public String[][] getListaC(String tipo){
+		String [][] lista = {};
+		
+		return lista;
+	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
@@ -122,4 +216,6 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 			}
 		});
 	}
+	
+	public static void main(String[] args) {new Interfaz();}
 }
