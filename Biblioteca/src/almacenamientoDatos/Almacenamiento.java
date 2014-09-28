@@ -25,10 +25,10 @@ public class Almacenamiento {
 			try {
 				if (objeto!=null){
 					objeto.close();
-					System.out.println("\nEl archivo lista-"+tipo+".txt fue guardado exitosamente.");
+					System.out.println("\nEl archivo lista-"+tipo+".txt fue guardado exitosamente.\n");
 					return true;
 				};
-				System.out.println("Ha ocurrido un error al guardar los datos.");
+				System.out.println("Ha ocurrido un error al guardar los datos.\n");
 				return false;
 			}
 			catch (Exception e2) {}
@@ -52,10 +52,10 @@ public class Almacenamiento {
 			 try{
 				 if(objeto!=null){
 					objeto.close();
-					System.out.println("El archivo lista-"+tipo+".txt fue cargado con éxito.");
+					System.out.println("El archivo lista-"+tipo+".txt fue cargado con éxito.\n");
 					return lista;
 				 }
-				 System.out.println("Ha ocurrido un error al cargar los datos.");
+				 System.out.println("Ha ocurrido un error al cargar los datos.\n");
 				 return lista;
 			 }
 			 catch( Exception e2 ){}
