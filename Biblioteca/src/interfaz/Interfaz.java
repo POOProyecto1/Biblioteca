@@ -44,8 +44,12 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	JMenuItem mntmECliente = new JMenuItem("Cliente");
 	JMenuItem mntmEArticulo = new JMenuItem("Articulo");
 	String [] nColumnasC = {"Cliente", "Nombre","Primer Apellido","Segundo Apellido", "Teléfono","Correo"};
-	ArrayList<String> columnasC;
-	ArrayList<String> columnasA;
+	String [] nColumnasL = {"Titulo", "Autor","Editorial","Edicion","Imagen","Calificacion"};
+	String [][] infoClientes = {
+			{"test","test","test","test","test","test"},
+			{"test","test","test","test","test","test"}
+	};
+	String [][] infoArticulos = {};
 	static int diasP = 0;
 	static int top = 10;
 	static int veces = 3;
@@ -53,8 +57,8 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	Registro registro = new Registro();
 	ArrayList<Object> personas = registro.getPersonas();
 	ArrayList<Object> articulos = registro.getArticulos();
-	JTable tablaC = new JTable();
-	JTable tablaA = new JTable();
+	JTable tablaC = new JTable(infoClientes, nColumnasC);
+	JTable tablaA = new JTable(infoArticulos, nColumnasL);
 	
 	public Interfaz() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -64,15 +68,17 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		
 		meterWidgets();
 		
-		add(contenedor);
+		//add(contenedor);
 		
 		setVisible(true);
 	}
 
 	public void meterWidgets(){
 		contenedor.setLayout(new FlowLayout());
-		panelGrid.setLayout(new GridBagLayout());
+		getContentPane().add(contenedor);
 		contenedor.add(menuBar);
+		contenedor.add(panelScroll, BorderLayout.CENTER);
+		panelGrid.setLayout(new GridBagLayout());
 		menuBar.add(mnClientes);
 		menuBar.add(mnArticulos);
 		menuBar.add(mnPrestamos);
