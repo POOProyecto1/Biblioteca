@@ -6,10 +6,10 @@ public class Familiar extends Persona {
 	private String tipo = "familiar";
 	
 	public Familiar(String nombre, String primerApellido,
-			String segundoApellido, String edad, String direccion,
-			String telefono, String correo,String parentesco,String cedula) {
-		super(nombre, primerApellido, segundoApellido, edad, direccion, telefono,
-				correo,cedula);
+			String segundoApellido, String edad,
+			String telefono, String correo,String parentesco) {
+		super(nombre, primerApellido, segundoApellido, edad, telefono,
+				correo);
 		setParentesco(parentesco);
 	}
 	
