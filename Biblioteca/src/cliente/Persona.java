@@ -10,7 +10,7 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 // Los atributos est·n en protected para que puedan ser accedidos por las clases hijas o clases en el mismo paquete
 	protected String edad;
 	protected String direccion;
-	protected ArrayList<Articulo> prestamos;  
+	protected String prestamo;  //guarda el nombre del articulo que tiene el prestamo
 	protected String nombre;
 	protected String primerApellido;
 	protected String segundoApellido;
@@ -25,7 +25,7 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 		//Asignaci√≥n de valores a los atributos
 		setEdad(edad);
 		setDireccion(direccion);
-		prestamos=new ArrayList<Articulo>();
+		prestamo="";
 		setNombre(nombre);
 		setPrimerApellido(primerApellido);
 		setSegundoApellido(segundoApellido);
@@ -56,13 +56,13 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 		this.direccion = direccion;
 	}
 
-	public ArrayList<Articulo> getPrestamos() {
-		return prestamos;
+	public String getPrestamo() {
+		return prestamo;
 	}
 
 	//Agrega un nuevo art√≠culo a los que tiene el usuario actualmente en pr√©stamo.
-	public void setPrestamos(Articulo prestamo) {
-		prestamos.add(prestamo);			
+	public void setPrestamo(String prestamo) {
+		this.prestamo=prestamo;			
 	}
 
 
@@ -125,6 +125,10 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 		this.morosidad = morosidad;
 	}
 	
+	public boolean getMorosidad(){
+		return morosidad;
+	}
+	
 	public String getCedula() {
 		return cedula;
 	}
@@ -164,18 +168,22 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 		}
 	}
 	
-	public boolean verificarMorosidad() {
-		for (int i=0;i<prestamos.size();i++) {
-			 if(prestamos.get(i).isVencido()){
-				 return true;
-			 }
+	public boolean verificarMorosidad(ArrayList<Articulo> biblioteca) {
+		if (prestamo!=""){
+			for (int i=0;i<biblioteca.size();i++) {
+				if (biblioteca.get(i).getTitulo()==prestamo){
+					if(biblioteca.get(i).isVencido()){
+						setMorosidad(true);
+						return true;
+					}
+				}
+			}
+			return false;
 		}
-		return false;
+		else{
+			return false;
+		}
 	}
-	
-	//public ArrayList<Articulo> verArticulosVencidos() {
-	//TODO
-	//}
 	
 	public String toString() { // Impresi√≥n de toda la informaci√≥n personal del prestatario
 		String msg = "";
@@ -185,7 +193,7 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 		msg += "DirecciÛn exacta: " + getDireccion() + "\n";
 		msg += "TelÈfono: " + getTelefono() + "\n";
 		msg += "Email de contacto: " + getCorreo() + "\n";
-		msg += "Moroso :" + verificarMorosidad() + "\n";
+		msg += "Moroso :" + getMorosidad() + "\n";
 		return msg;
 	}
 
