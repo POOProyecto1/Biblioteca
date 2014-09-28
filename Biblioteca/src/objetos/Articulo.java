@@ -1,5 +1,7 @@
 package objetos;
 
+import interfaz.Interfaz;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,20 +13,20 @@ public class Articulo implements Serializable{
 	protected String imagen;
 	protected double calificacion;
 	protected String annio;		
-	protected Persona prestatario = null; //Persona que lo tiene en pr�stamo.
+	protected Persona prestatario = null; //Persona que lo tiene en préstamo.
 	protected int diasPrestado; //Lleva la cuenta de los dias que lleva prestado a un cliente
-	protected boolean prestado; //Contiene el estado del art�culo, true si alguna persona lo tiene,false si est� disponible
+	protected boolean prestado; //Contiene el estado del artículo, true si alguna persona lo tiene,false si está disponible
 	protected ArrayList<Integer>fechaPrestamos; //contiene la frecuencia de prestamos por mes.(Cada casilla es un mes)
-	protected static int diasD;  //valor estandar de d�as de prestamo
+	protected static int diasD;  //valor estandar de días de prestamo
 	protected static int diasN;	//valor de dias de tolerancia
 	protected static int diasM;   //valor de dias extra de tolerancia
 	protected String estado; //Almacena el estado del libro en : verde, amarillo y rojo
-	protected static int casillaList;//contiene la posicion en la cual se est� modificando el valor de frecuencia de prestamos dentro de fechaPrestamos 
+	protected static int casillaList;//contiene la posicion en la cual se está modificando el valor de frecuencia de prestamos dentro de fechaPrestamos 
 	
 	
 	//Constructores de la clase
 	
-	//Constructor para artículos nuevos
+	//Constructor para artÃ­culos nuevos
 	public Articulo(String titulo, String imagen, double calificacion, String annio) {
 		setTitulo(titulo);
 		setImagen(imagen);
@@ -36,7 +38,7 @@ public class Articulo implements Serializable{
 		fechaPrestamos.add(0);
 	}
 	
-	//Constructor para cargar artículos existentes
+	//Constructor para cargar artÃ­culos existentes
 	public Articulo(String titulo,String imagen,double calificacion,String annio,
 			int diasPrestado,boolean prestado,ArrayList<Integer> fechaPrestamos) {
 	
@@ -57,7 +59,7 @@ public class Articulo implements Serializable{
 	/////////////////////////
 
 	public boolean isVencido(){
-		if(diasPrestado>diasD){
+		if(diasPrestado>Interfaz.diasP){
 			setEstado("Amarillo");
 			if(diasPrestado>diasN){
 				setEstado("Rojo");
