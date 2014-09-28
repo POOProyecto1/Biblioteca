@@ -60,17 +60,17 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	JMenuItem mntmEArticulo = new JMenuItem("Articulo");
 	ImageIcon logo = new ImageIcon("C://logo.jpg");
 	JLabel logoi = new JLabel(logo);
-	String [] nColumnasC = {"Cliente", "Nombre","Primer Apellido","Segundo Apellido", "Teléfono","Correo"};
-	String [] nColumnasL = {"Titulo", "Autor","Editorial","Edicion","Imagen","Calificacion"};
+	String [] nColumnasC = {"Nombre","Primer Apellido","Segundo Apellido", "Teléfono","Correo"};
+	String [] nColumnasL = {"Titulo", "Autor/Edicion/Annio","Editorial","Calificacion","Imagen"};
 	String [][] infoClientes = {};
 	String [][] infoArticulos = {};
 	static int diasP = 0;
 	static int top = 10;
 	static int veces = 3;
 	static int meses = 6;
-	Registro registro = new Registro();
-	ArrayList<Object> personas = registro.getPersonas();
-	ArrayList<Object> articulos = registro.getArticulos();
+	ArrayList<Object> personas;
+	ArrayList<Object> articulos;
+	static Registro registro = new Registro();
 	JTable tablaC = new JTable(infoClientes, nColumnasC);
 	JTable tablaA = new JTable(infoArticulos, nColumnasL);
 	
@@ -78,7 +78,7 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(500,500);
 		setLocationRelativeTo(null);
-		setTitle("Virtualiteca");
+		setTitle("Virtualteca");
 		meterWidgets();
 		getContentPane().add(contenedor);
 		setVisible(true);
@@ -184,18 +184,156 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 			}
 		});
 		
-		
+		mntmCliente.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mousePressed(MouseEvent arg0){
+				registrarCliente();
+			}
+		});
+		mntmArticulo.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mousePressed(MouseEvent arg0){
+				registrarArticulo();
+			}
+		});
 	}
 	
-	public String[][] getListaA(String tipo){
-		String [][] lista = {};
+	public boolean registrarCliente(){
+		boolean exito = false;
+		JFrame regC = new JFrame();
+		JPanel panelC = new JPanel();
 		
-		return lista;
+		
+		return exito;
+	}
+	
+	public boolean registrarArticulo(){
+		boolean exito = false;
+		
+		return exito;
 	}
 	
 	public String[][] getListaC(String tipo){
 		String [][] lista = {};
-		
+		int i1 = 0;
+		int i2 = 0;
+		int i3 = 0;
+		int contador = registro.personas.size();
+		boolean funco = false;
+		while(i1<=contador){
+			if (tipo == "colega"){
+				try{
+					lista[i3][i2] = ((Colega) personas.get(i1)).getNombre();
+					i2++;
+					lista[i3][i2] = ((Colega) personas.get(i1)).getPrimerApellido();
+					i2++;
+					lista[i3][i2] = ((Colega) personas.get(i1)).getSegundoApellido();
+					i2++;
+					lista[i3][i2] = ((Colega) personas.get(i1)).getTelefono();
+					i2++;
+					lista[i3][i2] = ((Colega) personas.get(i1)).getCorreo();
+					i2 = 0;
+					funco = true;
+				}finally{if(funco){i3++;}}
+			}else if(tipo == "estudiante"){
+				try{
+					lista[i3][i2] = ((Estudiante) personas.get(i1)).getNombre();
+					i2++;
+					lista[i3][i2] = ((Estudiante) personas.get(i1)).getPrimerApellido();
+					i2++;
+					lista[i3][i2] = ((Estudiante) personas.get(i1)).getSegundoApellido();
+					i2++;
+					lista[i3][i2] = ((Estudiante) personas.get(i1)).getTelefono();
+					i2++;
+					lista[i3][i2] = ((Estudiante) personas.get(i1)).getCorreo();
+					i2 = 0;
+					funco = true;
+				}finally{if(funco){i3++;}}
+			}else{
+				try{
+					lista[i3][i2] = ((Familiar) personas.get(i1)).getNombre();
+					i2++;
+					lista[i3][i2] = ((Familiar) personas.get(i1)).getPrimerApellido();
+					i2++;
+					lista[i3][i2] = ((Familiar) personas.get(i1)).getSegundoApellido();
+					i2++;
+					lista[i3][i2] = ((Familiar) personas.get(i1)).getTelefono();
+					i2++;
+					lista[i3][i2] = ((Familiar) personas.get(i1)).getCorreo();
+					i2 = 0;
+					funco = true;
+				}finally{if(funco){i3++;}}
+			}
+			i1++;
+			i2=0;
+		}	
+		return lista;
+	}
+	
+	public String[][] getListaA(String tipo){
+		String [][] lista = {};
+		int i1 = 0;
+		int i2 = 0;
+		int i3 = 0;
+		int contador = registro.articulos.size();
+		boolean funco = false;
+		while(i1<=contador){
+			if (tipo == "libro"){
+				try{
+					lista[i3][i2] = ((Libro) articulos.get(i1)).getTitulo();
+					i2++;
+					lista[i3][i2] = ((Libro) articulos.get(i1)).getAutor();
+					i2++;
+					lista[i3][i2] = ((Libro) articulos.get(i1)).getEditorial();
+					i2++;
+					lista[i3][i2] = String.valueOf(((Libro) articulos.get(i1)).getCalificacion());
+					i2++;
+					lista[i3][i2] = ((Libro) articulos.get(i1)).getImagen();
+					i2 = 0;
+					funco = true;
+				}finally{if(funco){i3++;}}
+			}else if(tipo == "pelicula"){
+				try{
+					lista[i3][i2] = ((Pelicula) articulos.get(i1)).getTitulo();
+					i2++;
+					lista[i3][i2] = ((Pelicula) articulos.get(i1)).getAnnio();
+					i2++;
+					lista[i3][i2] = ((Pelicula) articulos.get(i1)).getCompania();
+					i2++;
+					lista[i3][i2] = String.valueOf(((Pelicula) articulos.get(i1)).getCalificacion());
+					i2++;
+					lista[i3][i2] = ((Pelicula) articulos.get(i1)).getImagen();
+					i2 = 0;
+					funco = true;
+				}finally{if(funco){i3++;}}
+			}else if(tipo == "revista"){
+				try{
+					lista[i3][i2] = ((Revista) articulos.get(i1)).getTitulo();
+					i2++;
+					lista[i3][i2] = ((Revista) articulos.get(i1)).getEdicion();
+					i2++;
+					lista[i3][i2] = ((Revista) articulos.get(i1)).getEditorial();
+					i2++;
+					lista[i3][i2] = String.valueOf(((Revista) articulos.get(i1)).getCalificacion());
+					i2++;
+					lista[i3][i2] = ((Revista) articulos.get(i1)).getImagen();
+					i2 = 0;
+					funco = true;
+				}finally{if(funco){i3++;}}
+			}else if(tipo == "prestados"){
+				
+			}else if(tipo == "no prestados"){
+				
+			}else if(tipo == "verde"){
+				
+			}else if(tipo == "amarillo"){
+				
+			}else if(tipo == "rojo"){
+				
+			}
+			i1++;
+			i2=0;
+		}	
 		return lista;
 	}
 
