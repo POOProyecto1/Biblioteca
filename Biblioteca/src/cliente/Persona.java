@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import objetos.Articulo;	//Se importa la clase Articulo, ya que una persona puede tener o no artÃ­culos en prÃ©stamo
 import java.io.Serializable;
 
+import registro.Registro;
+
 
 public class Persona implements Serializable {    //se implementa Serializable, ya que es necesario a la hora de guardar una instancia en un txt
 	private static final long serialVersionUID = 1L;
 // Los atributos están en protected para que puedan ser accedidos por las clases hijas o clases en el mismo paquete
 	protected String edad;
-	protected String prestamo;  //guarda el nombre del articulo que tiene el prestamo
+	protected String prestamo=null;  //guarda el nombre del articulo que tiene el prestamo
 	protected String nombre;
 	protected String primerApellido;
 	protected String segundoApellido;
@@ -22,7 +24,6 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 			String edad,String telefono,String correo) {
 		//AsignaciÃ³n de valores a los atributos
 		setEdad(edad);
-		prestamo="";
 		setNombre(nombre);
 		setPrimerApellido(primerApellido);
 		setSegundoApellido(segundoApellido);
@@ -149,11 +150,13 @@ public class Persona implements Serializable {    //se implementa Serializable, 
 		}
 	}
 	
-	public boolean verificarMorosidad(ArrayList<Articulo> biblioteca) {
-		if (prestamo!=""){
+	public boolean verificarMorosidad() {
+		ArrayList<Object> biblioteca=Registro.articulos;
+		if (getPrestamo()!=null){
+			String nombre =getPrestamo();
 			for (int i=0;i<biblioteca.size();i++) {
-				if (biblioteca.get(i).getTitulo()==prestamo){
-					if(biblioteca.get(i).isVencido()){
+				if (((Articulo)biblioteca.get(i)).getTitulo().equals(nombre)){
+					if(((Articulo)biblioteca.get(i)).isVencido()){
 						setMorosidad(true);
 						return true;
 					}
