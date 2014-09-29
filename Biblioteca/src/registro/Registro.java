@@ -1,19 +1,27 @@
 package registro;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import cliente.Persona;
+import objetos.Articulo;
 
 import enviarMail.javamail;
 
 import almacenamientoDatos.Almacenamiento;
 
-public class Registro {
+public class Registro implements Comparable {
 	public static ArrayList<Object> personas=new ArrayList<Object>();
 	public static ArrayList<Object> articulos=new ArrayList<Object>();
 	Almacenamiento datos=new Almacenamiento();
 	javamail sendMail=new javamail();
 	
+	// Ordenamiento basado en un código de Internet
+	public int compareTo(Object cmp) {
+        Articulo articulo = (Articulo)cmp;        
+        
+        return this.titulo.compareTo(articulo.getTitulo());
+    }
 	
 	
 	public Registro() {
