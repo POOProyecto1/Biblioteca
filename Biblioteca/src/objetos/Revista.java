@@ -1,10 +1,11 @@
  package objetos;
-
+//Clase Revista, hereda de la clase Artículo
 public class Revista extends Articulo {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; // serial identificador de la clase
 	private String edicion;
 	private String editorial;
 	
+	//Constructor
 	public Revista(String titulo, String imagen, String annio, double calificacion, String edicion, String editorial) {
 		super(titulo, imagen, calificacion, annio);
 		setEdicion(edicion);
@@ -29,7 +30,7 @@ public class Revista extends Articulo {
 		this.editorial = editorial;
 	}
 
-	
+	//retorna la datos del objeto, en forma de string
 	public String toString() {
 		String respuesta;
 		respuesta = edicion+"*"+editorial+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+prestatario+"*"+diasPrestado+"\n";
