@@ -7,12 +7,13 @@ public class Libro extends Articulo {
 	private String editorial;
 	private String autor;
 	//constructor
-	public Libro(String titulo, String imagen, String annio, double calificacion,String edicion, String editorial, String autor) {
-		super(titulo, imagen, calificacion, annio);
+public Libro(String titulo, String imagen, int calificacion,String autor,String editorial, String edicion) {
+		super(titulo, imagen, calificacion);
 		setEdicion(edicion);
 		setEditorial(editorial);
 		setAutor(autor);
 	}
+
 
 	
 	//setters y getters
