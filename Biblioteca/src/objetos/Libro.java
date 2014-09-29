@@ -1,12 +1,12 @@
 package objetos;
 
-
+//clase Libro, hereda de Articulo
 public class Libro extends Articulo {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; //serail identificador de la clase
 	private String edicion;
 	private String editorial;
 	private String autor;
-	
+	//constructor
 	public Libro(String titulo, String imagen, String annio, double calificacion,String edicion, String editorial, String autor) {
 		super(titulo, imagen, calificacion, annio);
 		setEdicion(edicion);
@@ -39,7 +39,7 @@ public class Libro extends Articulo {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	
+	//retorna la información del objeto, en forma de string
 	public String toString() {
 		String respuesta;
 		respuesta = edicion + "*" + editorial + "*" + autor +"*" + titulo + "*" + imagen + "*" + calificacion +"*" + annio + "*"+ prestatario + "*" + diasPrestado +"\n";
