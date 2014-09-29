@@ -1,10 +1,11 @@
 package objetos;
 
-
+//Clase Pelicula, hereda de la clase Articulo
 public class Pelicula extends Articulo {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;  //serial identificador de version la clase
 	private String compania;
 	
+        //constructor
 	public Pelicula(String titulo, String imagen, String annio, double calificacion, String compania) {
 		super(titulo, imagen, calificacion, annio);
 		setCompania(compania);
@@ -21,7 +22,7 @@ public class Pelicula extends Articulo {
 	}
 
 
-	
+	//retorna los datos del objeto en forma de String
 	public String toString() {
 		String respuesta;
 		respuesta = compania+"*"+titulo+"*"+imagen+"*"+calificacion+"*"+annio+"*"+prestatario+"*"+diasPrestado+"\n";
