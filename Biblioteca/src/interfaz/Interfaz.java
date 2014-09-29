@@ -22,14 +22,17 @@ import java.io.File;
 //import java.awt.SystemColor;
 //import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import javax.swing.event.MenuKeyListener;
 import javax.swing.event.MenuKeyEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ActionListener;
@@ -68,8 +71,8 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 	public static int top = 10;
 	public static int veces = 3;
 	static int meses = 6;
-	ArrayList<Object> personas;
-	ArrayList<Object> articulos;
+	static ArrayList<Object> personas;
+	static ArrayList<Object> articulos;
 	static Registro registro = new Registro();
 	JTable tablaC = new JTable(infoClientes, nColumnasC);
 	JTable tablaA = new JTable(infoArticulos, nColumnasL);
@@ -355,5 +358,6 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		});
 	}
 	
-	public static void main(String[] args) {new Interfaz();}
+	public static void main(String[] args) {new Interfaz();
+	Collections.sort(articulos);}
 }
