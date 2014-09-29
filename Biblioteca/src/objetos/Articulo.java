@@ -29,16 +29,16 @@ public class Articulo implements Serializable{
 	//Constructores de la clase
 	
 	//Constructor para artÃ­culos nuevos
-	public Articulo(String titulo, String imagen, double calificacion, String annio) {
+public Articulo(String titulo, String imagen, int calificacion) {
 		setTitulo(titulo);
 		setImagen(imagen);
 		setCalificacion(calificacion);
-		setAnnio(annio);
 		setDiasPrestado(0);
 		setPrestado(false);	
 		fechaPrestamos=new ArrayList<Integer>();
 		fechaPrestamos.add(0);
 	}
+
 	
 	//Constructor para cargar artÃ­culos existentes
 	public Articulo(String titulo,String imagen,double calificacion,String annio,
