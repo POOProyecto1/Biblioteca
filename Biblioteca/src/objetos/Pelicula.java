@@ -6,10 +6,11 @@ public class Pelicula extends Articulo {
 	private String compania;
 	
         //constructor
-	public Pelicula(String titulo, String imagen, String annio, double calificacion, String compania) {
-		super(titulo, imagen, calificacion, annio);
+	public Pelicula(String titulo, String imagen, int calificacion, String compania) {
+		super(titulo, imagen, calificacion);
 		setCompania(compania);
 	}
+
 
 	
 	//setters y getters
