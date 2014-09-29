@@ -336,7 +336,8 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 			}
 			i1++;
 			i2=0;
-		}	
+		}
+		Collections.sort(articulos);
 		return lista;
 	}
 
@@ -358,6 +359,5 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		});
 	}
 	
-	public static void main(String[] args) {new Interfaz();
-	Collections.sort(articulos);}
+	public static void main(String[] args) {new Interfaz();}
 }
