@@ -1,5 +1,5 @@
 package enviarMail;
-
+//se importan lo elementos necesarios para el correcto funcionamiento de la clase
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -9,30 +9,41 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-//clase basada en c骴igo tomado de internet
+//clase basada en c贸digo tomado de internet
+//clase javamail
+//hace capaz el env铆o de correos electr贸nicos
 public class javamail {
     private final Properties properties = new Properties();
     private Session session;
-	 
+
+    /*
+    m茅todo init
+    Establece las propiedades del servidor desde el cual se enviar谩n correos
+    */
     private void init() {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.port", 587);
         properties.put("mail.smtp.mail.sender", "virtualiteca@gmail.com");//Ingresar el correo emisor
-        properties.put("mail.smtp.password", "biblioVirtual"); //Ingresar contrase馻 de correo
+        properties.put("mail.smtp.password", "biblioVirtual"); //Ingresar contrase帽a de correo
         properties.put("mail.smtp.user", "virtualiteca@gmail.com");//Ingresar el correo emisor
         properties.put("mail.smtp.auth", "true");
         session = Session.getDefaultInstance(properties);
     }
-    
+    /*
+    funci贸n send
+    se encarga de iniciar la conecci贸n con el servidor y enviar el correo
+    recibe el correo de destino,asunto y mensaje, en forma de string
+    retorna boolean
+    */
     public boolean send(String destino,String asunto, String mensaje) {
         init();
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress((String) properties.get("mail.smtp.mail.sender")));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(destino));
-            message.setSubject(asunto);          //Asunto
-            message.setText(mensaje);			//Mensaje
+            message.setSubject(asunto);          //establece el asunto
+            message.setText(mensaje);			//establece el cuerpo del mensaje
             Transport t = session.getTransport("smtp");
             t.connect((String) properties.get("mail.smtp.user"), (String) properties.get("mail.smtp.password"));
             t.sendMessage(message, message.getAllRecipients());
@@ -44,7 +55,11 @@ public class javamail {
         	return false;
         }
     }
-    
+    /*funcion enviarCorreo
+    se encarga de ejecutar la funci贸n send y devolver el resultado en forma de boolean
+     recibe el correo de destino,asunto y mensaje, en forma de string
+     retorna boolean
+    */
     public boolean enviarCorreo(String destinatario,String asunto,String mensaje){
     	boolean result = send(destinatario,asunto,mensaje);
     	return result;
