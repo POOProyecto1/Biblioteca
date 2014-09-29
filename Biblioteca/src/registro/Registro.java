@@ -18,11 +18,16 @@ public class Registro implements Comparable {
 	
 	// Ordenamiento basado en un código de Internet
 	public int compareTo(Object cmp) {
+		int order = 0;
         Articulo articulo = (Articulo)cmp;        
-        
-        return this.titulo.compareTo(articulo.getTitulo());
+        if(this.titulo.compareTo(articulo.getTitulo()) < 0){ 
+        	order = -1; 
+        }
+        else if(this.titulo.compareTo(articulo.getTitulo()) > 0) { 
+        	order = 1; 
+        }  
+       return order; 
     }
-	
 	
 	public Registro() {
 		leer();
