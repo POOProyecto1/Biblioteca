@@ -1,5 +1,5 @@
 package objetos;
-
+//Se importan los elementos necesarios para el correcto funcionamiento de la clase
 import interfaz.Interfaz;
 
 import java.io.Serializable;
@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 import cliente.Persona;
 
+//Clase Articulo, implementa de Serializable para poder guardar su información dentro de un .txt
+//funciona como super clase de Libro, Revista y Pelicula
 public class Articulo implements Serializable{
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; //identificador de la clase, necesario para poder almacenarlo en un .txt
 	protected String titulo;
 	protected String imagen;
 	protected double calificacion;
@@ -57,9 +59,14 @@ public class Articulo implements Serializable{
 	/////////////////////////
 	//Funciones de la clase//
 	/////////////////////////
-
+	/*
+	función es isVencido
+	verifica el estado de morosidad de un articulo
+	no recibe parámetros
+	retorna boolean
+	*/
 	public boolean isVencido(){
-		if(diasPrestado>Interfaz.diasP){
+		if(diasPrestado>Interfaz.diasP){  //verifica si la cantidad de dias en prestamo es mayor que los dias establecidos en la interfaz
 			setEstado("Amarillo");
 			if(diasPrestado>diasN){
 				setEstado("Rojo");
@@ -72,6 +79,8 @@ public class Articulo implements Serializable{
 	}
 	
 	//adFechaPrestamos: Agrega una solicitud de prestamos para llevar el conteo del "top libros"
+	//recibe la cantidad de dias que lleva activo el sistema
+	//no retorna nada
 	public void addFechaPrestamos(int dias) {
 		if (dias%30==0){
 			fechaPrestamos.add(0);
