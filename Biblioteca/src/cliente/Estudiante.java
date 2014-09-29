@@ -9,14 +9,11 @@ public class Estudiante extends Persona {
 	private String tipo = "estudiante";	//tipo de la clase
 	
 	//Constructor de la clase
-	public Estudiante(String nombre,String primerApellido,String segundoApellido,
-						String edad,String telefono,String correo,
-						String carne,String lugarEstudio,String carrera) {
-		super(nombre,primerApellido,segundoApellido,edad,telefono,correo);
-		setCarne(carne);
-		setLugarEstudio(lugarEstudio);
-		setCarrera(carrera);
+		public Estudiante(String nombre,String primerApellido,String segundoApellido,
+						String telefono,String correo) {
+		super(nombre,primerApellido,segundoApellido,telefono,correo);
 	}
+
 	 
 	//funcion que retorna el valor del atributo carne
 	public String getCarne() {
