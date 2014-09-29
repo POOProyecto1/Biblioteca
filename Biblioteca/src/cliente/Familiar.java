@@ -7,12 +7,10 @@ public class Familiar extends Persona {
 	
 	//constructor
 	public Familiar(String nombre, String primerApellido,
-			String segundoApellido, String edad,
-			String telefono, String correo,String parentesco) {
-		super(nombre, primerApellido, segundoApellido, edad, telefono,
-				correo);
-		setParentesco(parentesco);
+			String segundoApellido, String telefono, String correo) {
+		super(nombre, primerApellido, segundoApellido, telefono, correo);
 	}
+
 	//funcion que retorna el valor del atributo Parentesco
 	public String getParentesco() {
 		return parentesco;
