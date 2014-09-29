@@ -1,81 +1,73 @@
 package interfaz;
-import cliente.*;
-import almacenamientoDatos.*;
-import enviarMail.*;
 import objetos.*;
 import registro.*;
+import registrar.*;
+import recursos.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import java.awt.Component;
-//import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Label;
-import java.io.File;
-//import java.awt.SystemColor;
-//import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
-import javax.swing.event.MenuKeyListener;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuListener;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
-
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+/* Esta clase es la ventana principal donde se motrara el programa.
+ */
 
 public class Interfaz extends JFrame{ //implements ActionListener{
 	JPanel contenedor = new JPanel();
-	JPanel panelGrid = new JPanel();
+	JScrollPane panelGrid = new JScrollPane();
 	GridBagConstraints grid = new GridBagConstraints();
 	JMenuBar menuBar = new JMenuBar();
-	JMenu mnClientes = new JMenu("Clientes");
-	JMenuItem mntmEstudiantes = new JMenuItem("Estudiantes");
-	JMenuItem mntmColegas = new JMenuItem("Colegas");
-	JMenuItem mntmFamiliares = new JMenuItem("Familiares");
 	JMenu mnArticulos = new JMenu("Articulos");
-	JMenuItem mntmLibros = new JMenuItem("Libros");
-	JMenuItem mntmRevistas = new JMenuItem("Revistas");
-	JMenuItem mntmPeliculas = new JMenuItem("Peliculas");
 	JMenu mnPrestamos = new JMenu("Prestamos");
-	JMenuItem mntmVerde = new JMenuItem("Verde");
-	JMenuItem mntmAmarillo = new JMenuItem("Amarillo");
-	JMenuItem mntmRojo = new JMenuItem("Rojo");
+	
 	JMenu mnRegistrar = new JMenu("Registrar");
 	JMenuItem mntmCliente = new JMenuItem("Cliente");
 	JMenuItem mntmArticulo = new JMenuItem("Articulo");
+	
 	JMenu mnEditar = new JMenu("Editar");
 	JMenuItem mntmECliente = new JMenuItem("Cliente");
 	JMenuItem mntmEArticulo = new JMenuItem("Articulo");
-	ImageIcon logo = new ImageIcon("C://logo.jpg");
+	
+	ImageIcon logo = new ImageIcon(this.getClass().getResource("/recursos/logo.jpg"));
+	ImageIcon invis = new ImageIcon(this.getClass().getResource("/recursos/invisible.png"));
 	JLabel logoi = new JLabel(logo);
-	String [] nColumnasC = {"Nombre","Primer Apellido","Segundo Apellido", "Teléfono","Correo"};
+	JLabel invisi = new JLabel(invis);
+	
 	String [] nColumnasL = {"Titulo", "Autor/Edicion/Annio","Editorial","Calificacion","Imagen"};
-	String [][] infoClientes = {};
-	String [][] infoArticulos = {};
+	int numArticulos = 0;
+	ArrayList<ArrayList<Object>> listaArticulos;
+	
 	public static int diasP = 0;
 	public static int top = 10;
 	public static int veces = 3;
-	static int meses = 6;
-	static ArrayList<Object> personas;
-	static ArrayList<Object> articulos;
+	public static int meses = 6;
+	
+	ArrayList<Object> personas;
+	ArrayList<Object> articulos;
 	static Registro registro = new Registro();
-	JTable tablaC = new JTable(infoClientes, nColumnasC);
-	JTable tablaA = new JTable(infoArticulos, nColumnasL);
+	
+	//JTable tablaA = new JTable(infoArticulos, nColumnasL);
+	
+	private final JMenuItem mntmLibros = new JMenuItem("Libros");
+	private final JMenuItem mntmRevistas = new JMenuItem("Revistas");
+	private final JMenuItem mntmPeliculas = new JMenuItem("Peliculas");
+	
+	private final JMenuItem mntmLibrosP = new JMenuItem("Libros Prestados");
+	private final JMenuItem mntmLibrosNP = new JMenuItem("Libros no Prestados");
+	private final JMenuItem mntmRevistasP = new JMenuItem("Revistas Prestadas");
+	private final JMenuItem mntmRevistasNP = new JMenuItem("Revistas no Prestadas");
+	private final JMenuItem mntmPeliculasP = new JMenuItem("Peliculas Prestadas");
+	private final JMenuItem mntmPeliculasNP = new JMenuItem("Peliculas no Prestadas");
+	
+	private final JMenu mnPrestar = new JMenu("Prestar");
+	private final JMenuItem mntmLibro = new JMenuItem("Libro");
+	private final JMenuItem mntmRevista = new JMenuItem("Revista");
+	private final JMenuItem mntmPelicula = new JMenuItem("Pelicula");
 	
 	public Interfaz() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -86,54 +78,110 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		getContentPane().add(contenedor);
 		setVisible(true);
 	}
-
+	
+/* Esta funcion le agrega al panel principal los elementos del menu
+ * y la imagen de fondo (nuestro logo). Tambien dentro de ella se defije
+ * que pasara cada vez que se presione una opcion del menu.
+*/
 	public void meterWidgets(){
 		contenedor.setLayout(new BorderLayout());
 		contenedor.add(menuBar, BorderLayout.NORTH);
-		menuBar.add(mnClientes);
 		menuBar.add(mnArticulos);
 		menuBar.add(mnPrestamos);
 		menuBar.add(mnRegistrar);
 		menuBar.add(mnEditar);
+		
 		mnEditar.add(mntmEArticulo);
 		mnEditar.add(mntmECliente);
+		
 		mnRegistrar.add(mntmCliente);
 		mnRegistrar.add(mntmArticulo);
-		mnPrestamos.add(mntmVerde);
-		mnPrestamos.add(mntmAmarillo);
-		mnPrestamos.add(mntmRojo);
+		
+		mnPrestamos.add(mntmLibrosP);
+		mnPrestamos.add(mntmLibrosNP);
+		mnPrestamos.add(mntmRevistasP);
+		mnPrestamos.add(mntmRevistasNP);
+		mnPrestamos.add(mntmPeliculasP);
+		mnPrestamos.add(mntmPeliculasNP);
+		
 		mnArticulos.add(mntmLibros);
 		mnArticulos.add(mntmRevistas);
 		mnArticulos.add(mntmPeliculas);
-		mnClientes.add(mntmEstudiantes);
-		mnClientes.add(mntmColegas);
-		mnClientes.add(mntmFamiliares);
+		
+		menuBar.add(mnPrestar);
+		mnPrestar.add(mntmLibro);
+		mnPrestar.add(mntmRevista);
+		mnPrestar.add(mntmPelicula);
+		
 		contenedor.add(logoi, BorderLayout.CENTER);
-		panelGrid.setLayout(new GridBagLayout());
 		contenedor.add(logoi);
 		
-		mntmEstudiantes.addMouseListener(new MouseAdapter() {
+		/*Este bloque de funciones define lo que sucedera cuando se presione alguna
+		 * opcion del menu. Hasta el proximo comentario todas haran lo mismo: borrar la
+		 * imagen de fondo, poner el fondo del panel blanco, llamar a una funcion
+		 * que retornara la cantidad de articulos que cumplen con las condiciones descritas
+		 * en el parentesis (tipo, prestado/no prestado/todos)
+		 * 
+		*/
+		mntmPeliculasNP.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				contenedor.remove(logoi);
-				infoClientes = getListaC("estudiantes");
-				tablaC = new JTable();
+				contenedor.setBackground(Color.WHITE);
+				numArticulos = getNumA("pelicula", "no prestados");
+				listaArticulos = getListaA("pelicula", "no prestados");
+				mostrarA(numArticulos,4,listaArticulos);
 			}
 		});
-		mntmColegas.addMouseListener(new MouseAdapter() {
+		mntmRevistasNP.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				contenedor.remove(logoi);
-				infoClientes = getListaC("colegas");
-				
+				contenedor.setBackground(Color.WHITE);
+				numArticulos = getNumA("revista", "no prestados");
+				listaArticulos = getListaA("revista", "no prestados");
+				mostrarA(numArticulos,5,listaArticulos);
 			}
 		});
-		mntmFamiliares.addMouseListener(new MouseAdapter() {
+		mntmLibrosNP.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				contenedor.remove(logoi);
-				infoClientes = getListaC("familiares");
-				
+				contenedor.setBackground(Color.WHITE);
+				numArticulos = getNumA("libro", "no prestados");
+				listaArticulos = getListaA("libro", "no prestados");
+				mostrarA(numArticulos,6,listaArticulos);
+			}
+		});
+		
+		mntmPeliculasP.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				contenedor.setBackground(Color.WHITE);
+				numArticulos = getNumA("pelicula", "prestados");
+				listaArticulos = getListaA("pelicula", "prestados");
+				mostrarA(numArticulos,5,listaArticulos);
+			}
+		});
+		mntmRevistasP.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				contenedor.setBackground(Color.WHITE);
+				numArticulos = getNumA("revista", "prestados");
+				listaArticulos = getListaA("revista", "prestados");
+				mostrarA(numArticulos,6,listaArticulos);
+			}
+		});
+		mntmLibrosP.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				contenedor.remove(logoi);
+				contenedor.setBackground(Color.WHITE);
+				numArticulos = getNumA("libro", "prestados");
+				listaArticulos = getListaA("libro", "prestados");
+				mostrarA(numArticulos,7,listaArticulos);
 			}
 		});
 		
@@ -141,52 +189,39 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				contenedor.remove(logoi);
-				infoArticulos = getListaA("peliculas");
-				
+				contenedor.setBackground(Color.WHITE);
+				//numArticulos = getNumA("pelicula", "todos");
+				listaArticulos = getListaA("pelicula", "todos");
+				mostrarA(numArticulos,4,listaArticulos);
 			}
 		});
 		mntmRevistas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				contenedor.remove(logoi);
-				infoArticulos = getListaA("revistas");
-				
+				contenedor.setBackground(Color.WHITE);
+				//numArticulos = getNumA("revista", "todos");
+				listaArticulos = getListaA("revista", "todos");
+				mostrarA(numArticulos,5,listaArticulos);
 			}
 		});
 		mntmLibros.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				contenedor.remove(logoi);
-				infoArticulos = getListaA("libros");
-				
+				contenedor.setBackground(Color.WHITE);
+				//numArticulos = getNumA("libro", "todos");
+				System.out.print("Esto sucede antes de su funcion.");
+				listaArticulos = getListaA("libro", "todos");
+				mostrarA(numArticulos,6,listaArticulos);
 			}
 		});
 		
-		mntmRojo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				contenedor.remove(logoi);
-				infoClientes = getListaC("rojo");
-				
-			}
-		});
-		mntmVerde.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				contenedor.remove(logoi);
-				infoClientes = getListaC("verde");
-				
-			}
-		});
-		mntmAmarillo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				contenedor.remove(logoi);
-				infoClientes = getListaC("amarillo");
-				
-			}
-		});
-		
+		/*Las siguientes dos funciones sucederan cuando se presione
+		 * alguna de las opciones: registrar cliente o registrar articulo.
+		 * Mandan a llamar funciones que llaman dos constructores
+		 * diferentes.
+		*/
 		mntmCliente.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mousePressed(MouseEvent arg0){
@@ -201,163 +236,160 @@ public class Interfaz extends JFrame{ //implements ActionListener{
 		});
 	}
 	
-	public boolean registrarCliente(){
-		boolean exito = false;
-		JFrame regC = new JFrame();
-		JPanel panelC = new JPanel();
-		
-		
-		return exito;
+	/*En esta funcion se tenia planeado el proceso para mostrar la informacion de los libros
+	 *En general es un while que recorrera todo el ArrayList de ArrayList de Objetos e irá
+	 *insertando en un GridLayout la informacion recolectada.
+	*/
+	public void mostrarA(int cant, int col, ArrayList<ArrayList<Object>> lista){
+		int i = 0;
+		panelGrid.setLayout(new GridLayout(cant, col));
+		System.out.print(cant);
+		System.out.print(col);
+		while(i<cant){
+			
+			i++;
+		}
 	}
-	
-	public boolean registrarArticulo(){
-		boolean exito = false;
-		
-		return exito;
-	}
-	
-	public String[][] getListaC(String tipo){
+	/* Funcion que recibe de entrada un nombre completo que buscara en el
+	 * ArrayList de personas. Si lo encuentra en algun objeto devolvera el
+	 * indice en donde fue encontrado, si no lo encuentra devolvera un -1. 
+	 */
+	public int getListaA(String nombre, String apellido1, String apellido2){
 		String [][] lista = {};
 		int i1 = 0;
 		int i2 = 0;
 		int i3 = 0;
 		int contador = registro.personas.size();
 		boolean funco = false;
-		while(i1<=contador){
-			if (tipo == "colega"){
-				try{
-					lista[i3][i2] = ((Colega) personas.get(i1)).getNombre();
-					i2++;
-					lista[i3][i2] = ((Colega) personas.get(i1)).getPrimerApellido();
-					i2++;
-					lista[i3][i2] = ((Colega) personas.get(i1)).getSegundoApellido();
-					i2++;
-					lista[i3][i2] = ((Colega) personas.get(i1)).getTelefono();
-					i2++;
-					lista[i3][i2] = ((Colega) personas.get(i1)).getCorreo();
-					i2 = 0;
-					funco = true;
-				}finally{if(funco){i3++;}}
-			}else if(tipo == "estudiante"){
-				try{
-					lista[i3][i2] = ((Estudiante) personas.get(i1)).getNombre();
-					i2++;
-					lista[i3][i2] = ((Estudiante) personas.get(i1)).getPrimerApellido();
-					i2++;
-					lista[i3][i2] = ((Estudiante) personas.get(i1)).getSegundoApellido();
-					i2++;
-					lista[i3][i2] = ((Estudiante) personas.get(i1)).getTelefono();
-					i2++;
-					lista[i3][i2] = ((Estudiante) personas.get(i1)).getCorreo();
-					i2 = 0;
-					funco = true;
-				}finally{if(funco){i3++;}}
-			}else{
-				try{
-					lista[i3][i2] = ((Familiar) personas.get(i1)).getNombre();
-					i2++;
-					lista[i3][i2] = ((Familiar) personas.get(i1)).getPrimerApellido();
-					i2++;
-					lista[i3][i2] = ((Familiar) personas.get(i1)).getSegundoApellido();
-					i2++;
-					lista[i3][i2] = ((Familiar) personas.get(i1)).getTelefono();
-					i2++;
-					lista[i3][i2] = ((Familiar) personas.get(i1)).getCorreo();
-					i2 = 0;
-					funco = true;
-				}finally{if(funco){i3++;}}
+		while(i1=contador){
+			if (((Persona) personas.get(i1)).getNombre()==nombre && ((Persona) personas.get(i1)).getPrimerApellido()==apellido1 && ((Persona) personas.get(i1)).getSegundoApellido()==apellido2){
+				return i1;
 			}
 			i1++;
-			i2=0;
-		}	
-		return lista;
+		}
+		return -1;
 	}
 	
-	public String[][] getListaA(String tipo){
-		String [][] lista = {};
+	/* Estas son solamente una referencia para llamaral constructor
+	 * de registrarClliente y registrarArticulo. Cada una es
+	 * una clase aparte en otro paquene en el que se manda a llamar
+	 * un nuevo JFrame con los espacios necesarios para ingresar y
+	 * posteriormente regustrar un nuevo cliente o articulo.
+	 */
+	public void registrarCliente(){
+		new Rclientes();
+	}
+	
+	public void registrarArticulo(){
+		new Rarticulos();
+	}
+	
+	/* Funcion recibe dos delimitadores tipo 1(libro, revista, pelicula)
+	 * y tipo2 (prestado, no prestado, todos), segun estos delimitadores
+	 * la funcion buscara en el Arraylist de articulos todos los articulos
+	 * que cumplan con las condiciones y devolvera el numero de cuantos
+	 * lo cumplen.
+	*/
+	public int getNumA(String tipo1, String tipo2){
+		int i1 = 0;
+		int i3 = 0;
+		boolean noPrestado = true;
+		boolean prestado = false;
+		if(tipo2=="prestados")
+			noPrestado=false;
+			prestado = true;
+		if(tipo2=="no prestados")
+			noPrestado=false;
+		System.out.print(tipo2);
+		int contador = registro.articulos.size();
+		
+		boolean funco = false;
+		while(i1<=contador){
+			if (tipo1 == "libro"){
+				if(noPrestado==((Libro) articulos.get(i1)).isPrestado() && prestado==((Libro) articulos.get(i1)).isPrestado()){
+					funco = true;}
+				if(funco){i3++;}
+			}else if(tipo1 == "pelicula"){
+				if(noPrestado==((Libro) articulos.get(i1)).isPrestado() && prestado==((Libro) articulos.get(i1)).isPrestado()){
+					funco = true;}
+				if(funco){i3++;}
+			}else if(tipo1 == "revista"){
+				if(noPrestado==((Libro) articulos.get(i1)).isPrestado() && prestado==((Libro) articulos.get(i1)).isPrestado()){
+					funco = true;}
+				if(funco){i3++;}
+			}
+			i1++;
+		}	
+		return i3;
+	}
+	/* Funcion recibe dos delimitadores tipo 1(libro, revista, pelicula)
+	 * y tipo2 (prestado, no prestado, todos), segun estos delimitadores
+	 * la funcion buscara en el Arraylist de articulos todos los articulos
+	 * que cumplan con las condiciones y devolvera en un ArrayList de ArrayList
+	 * de Objetos todos los objetos que cumplem con las condiciones.
+	*/
+	public ArrayList<ArrayList<Object>> getListaA(String tipo1, String tipo2){
+		ArrayList<Object> articulo = new ArrayList<Object>();
+		ArrayList<ArrayList<Object>> lista = new ArrayList<ArrayList<Object>>();
 		int i1 = 0;
 		int i2 = 0;
 		int i3 = 0;
+		boolean prestado=false;
+		boolean noPrestado=true;
+		if(tipo2=="prestados")
+			prestado=true;
+		if(tipo2=="no prestados")
+			noPrestado=false;
 		int contador = registro.articulos.size();
 		boolean funco = false;
+		System.out.print(registro.articulos.get(1).toString());
+		System.out.print(((Libro)articulos.get(i1)).getTitulo());
 		while(i1<=contador){
-			if (tipo == "libro"){
+			if (tipo1 == "libro"){
 				try{
-					lista[i3][i2] = ((Libro) articulos.get(i1)).getTitulo();
-					i2++;
-					lista[i3][i2] = ((Libro) articulos.get(i1)).getAutor();
-					i2++;
-					lista[i3][i2] = ((Libro) articulos.get(i1)).getEditorial();
-					i2++;
-					lista[i3][i2] = String.valueOf(((Libro) articulos.get(i1)).getCalificacion());
-					i2++;
-					lista[i3][i2] = ((Libro) articulos.get(i1)).getImagen();
-					i2 = 0;
-					funco = true;
+					if((noPrestado==((Libro) articulos.get(i1)).isPrestado() && prestado==((Libro) articulos.get(i1)).isPrestado()) || tipo2==((Libro) articulos.get(i1)).getEstado() || tipo2=="todos"){
+						articulo.add(((Libro) articulos.get(i1)).getTitulo());
+						articulo.add(((Libro) articulos.get(i1)).getImagen());
+						articulo.add(String.valueOf(((Libro) articulos.get(i1)).getCalificacion()));
+						articulo.add(((Libro) articulos.get(i1)).getAutor());
+						articulo.add(((Libro) articulos.get(i1)).getEdicion());
+						articulo.add(((Libro) articulos.get(i1)).getEditorial());
+						lista.add(articulo);
+						articulo.clear();
+						funco = true;
+					}
 				}finally{if(funco){i3++;}}
-			}else if(tipo == "pelicula"){
+			}else if(tipo1 == "pelicula"){
 				try{
-					lista[i3][i2] = ((Pelicula) articulos.get(i1)).getTitulo();
-					i2++;
-					lista[i3][i2] = ((Pelicula) articulos.get(i1)).getAnnio();
-					i2++;
-					lista[i3][i2] = ((Pelicula) articulos.get(i1)).getCompania();
-					i2++;
-					lista[i3][i2] = String.valueOf(((Pelicula) articulos.get(i1)).getCalificacion());
-					i2++;
-					lista[i3][i2] = ((Pelicula) articulos.get(i1)).getImagen();
-					i2 = 0;
-					funco = true;
+					if((noPrestado==((Pelicula) articulos.get(i1)).isPrestado() && prestado==((Pelicula) articulos.get(i1)).isPrestado()) || tipo2==((Pelicula) articulos.get(i1)).getEstado() || tipo2=="todos"){
+						articulo.add(((Pelicula) articulos.get(i1)).getTitulo());
+						articulo.add(((Pelicula) articulos.get(i1)).getImagen());
+						articulo.add(String.valueOf(((Pelicula) articulos.get(i1)).getCalificacion()));
+						articulo.add(((Pelicula) articulos.get(i1)).getCompania());
+						lista.add(articulo);
+						articulo.clear();
+						funco = true;
+					}
 				}finally{if(funco){i3++;}}
-			}else if(tipo == "revista"){
+			}else if(tipo1 == "revista"){
 				try{
-					lista[i3][i2] = ((Revista) articulos.get(i1)).getTitulo();
-					i2++;
-					lista[i3][i2] = ((Revista) articulos.get(i1)).getEdicion();
-					i2++;
-					lista[i3][i2] = ((Revista) articulos.get(i1)).getEditorial();
-					i2++;
-					lista[i3][i2] = String.valueOf(((Revista) articulos.get(i1)).getCalificacion());
-					i2++;
-					lista[i3][i2] = ((Revista) articulos.get(i1)).getImagen();
-					i2 = 0;
-					funco = true;
+					if((noPrestado==((Revista) articulos.get(i1)).isPrestado() && prestado==((Revista) articulos.get(i1)).isPrestado()) || tipo2==((Revista) articulos.get(i1)).getEstado() || tipo2=="todos"){
+						articulo.add(((Revista) articulos.get(i1)).getTitulo());
+						articulo.add(((Revista) articulos.get(i1)).getImagen());
+						articulo.add(String.valueOf(((Revista) articulos.get(i1)).getCalificacion()));
+						articulo.add(((Revista) articulos.get(i1)).getEdicion());
+						articulo.add(((Revista) articulos.get(i1)).getEditorial());
+						lista.add(articulo);
+						articulo.clear();
+						funco = true;
+					}
 				}finally{if(funco){i3++;}}
-			}else if(tipo == "prestados"){
-				
-			}else if(tipo == "no prestados"){
-				
-			}else if(tipo == "verde"){
-				
-			}else if(tipo == "amarillo"){
-				
-			}else if(tipo == "rojo"){
-				
 			}
 			i1++;
-			i2=0;
-		}
-		Collections.sort(articulos);
+		}	
 		return lista;
 	}
-
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
-	
+	/*Esta clase inicializa el programa en general. 
+	 */
 	public static void main(String[] args) {new Interfaz();}
 }
