@@ -10,29 +10,30 @@ import registro.Registro;//se importa la clase registro
 //Clase persona, implementa Serializable para poder guardar sus valores en un .txt
 //Funciona como superclase de Estudiante,Familiar,Colega
 public class Persona implements Serializable {    //se implementa Serializable, ya que es necesario a la hora de guardar una instancia en un txt
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 // Los atributos están en protected para que puedan ser accedidos por las clases hijas o clases en el mismo paquete
-	protected String edad;
-	protected String prestamo=null;  //guarda el nombre del articulo que tiene el prestamo
+	protected String prestamo;  //guarda el nombre del articulo que tiene el prestamo
 	protected String nombre;
 	protected String primerApellido;
 	protected String segundoApellido;
 	protected String telefono;
 	protected String correo;
-	protected boolean morosidad;		//true si el articulo que tiene a prestamo está vencido, false si no.
-	
+	protected boolean morosidad;
+	protected String tipo;
+
 	//Constructor de la clase
 	public Persona(String nombre,String primerApellido,String segundoApellido,
-			String edad,String telefono,String correo) {
+			String telefono,String correo) {
 		//AsignaciÃ³n de valores a los atributos
-		setEdad(edad);
+		prestamo="";
 		setNombre(nombre);
 		setPrimerApellido(primerApellido);
 		setSegundoApellido(segundoApellido);
 		setTelefono(telefono);
 		setCorreo(correo);
 		setMorosidad(false); 
-		}
+	}
+
 	
 
 	//Set y get de todos los atributos
