@@ -6,11 +6,12 @@ public class Revista extends Articulo {
 	private String editorial;
 	
 	//Constructor
-	public Revista(String titulo, String imagen, String annio, double calificacion, String edicion, String editorial) {
-		super(titulo, imagen, calificacion, annio);
+	public Revista(String titulo, String imagen, int calificacion, String edicion, String editorial) {
+		super(titulo, imagen, calificacion);
 		setEdicion(edicion);
 		setEditorial(editorial);
 	}
+
 
 	
 	//setters y getters
