@@ -9,12 +9,11 @@ public class Colega extends Persona {
 	
 	//Constructor
 	public Colega(String nombre,String primerApellido,String segundoApellido,
-			String edad,String telefono,String correo,String puesto,String lugarTrabajo) {
+			String telefono,String correo) {
 		super( nombre, primerApellido, segundoApellido,
-			 edad,telefono, correo);			//se envían algunos atributos al constructor de la superclase
-		setPuesto(puesto);					
-		setLugarTrabajo(lugarTrabajo);
+			 telefono, correo);
 	}
+
 		
 	//funcion que retorna el puesto del colega	
 	public String getPuesto() {
